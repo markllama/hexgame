@@ -103,16 +103,14 @@ func (hv0 HexVector) Distance(hv1 HexVector) (int) {
 	return  abs(hv0.Sub(hv1).Length())
 }
 
-// hx / abs(hx)
-
 func (hv HexVector) Hextant() (int) {
-
 	var m, rx, ry, rz int
+	
 	if hv.Hx() == 0 {	rx = 1 } else { rx = hv.Hx() / abs(hv.Hx()) + 1}		
 	if hv.Hy() == 0 {	ry = 1 } else { ry = hv.Hy() / abs(hv.Hy()) + 1}
 	if hv.Hz() == 0 {	rz = 1 } else { rz = hv.Hz() / abs(hv.Hz()) + 1}
+	
 	m = (rx << 6) + (ry << 3) + rz
-	//return m
-
+	
 	return hextant[m]
 }
