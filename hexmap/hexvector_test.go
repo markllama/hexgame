@@ -146,7 +146,6 @@ func TestHextant(t* testing.T) {
 		t.Error("hextant[0200] expect: 0, actual: " + fmt.Sprintf("%d", hextant[0200]))
 	}
 
-	
 	var h int = ORIGIN.Hextant()
 	if h != 0 {
 		t.Error("HexVector.Hextant() ORIGIN, expected: 0, actual: " + fmt.Sprintf("0%03o", h))
@@ -159,6 +158,19 @@ func TestHextant(t* testing.T) {
 		}
 	}
 
-	
-}
+	var offaxis = []HexVector{
+		HexVector{ 1,-1},
+		HexVector{ 2, 1},
+		HexVector{ 1, 2},
+		HexVector{-1, 1},
+		HexVector{-2,-1},
+		HexVector{-1,-2},
+	}
 
+	for i, v := range offaxis {
+		h = v.Hextant()
+		if h != i {
+			t.Error(fmt.Sprintf("HexVector.Hextant() UNIT[%d], expected: %d, actual %d",i, i, h))
+		}
+	}
+}
