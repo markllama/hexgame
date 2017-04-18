@@ -1,8 +1,32 @@
 package hexmap
 
+import (
+	"encoding/json"
+//	"gopkg.in/mgo.v2";
+//	"gopkg.in/mgo.v2/bson";
+)
+
 type HexVector struct {
 	hx int
 	hy int
+}
+
+type hexVector struct {
+	Hx int `json:"hx"`
+	Hy int `json:"hy"`
+}
+
+func (u HexVector) MarshalJSON() ([]byte, error) {
+	return json.Marshal(hexVector{u.Hx(), u.Hy()})
+}
+
+func (hv *HexVector) UnmarshalJSON(data []byte) error {
+	jhv := hexVector{}
+	err := json.Unmarshal(data, &jhv)
+	if err != nil { return err }
+	hv.hx = jhv.Hx
+	hv.hy = jhv.Hy
+	return nil
 }
 
 var ORIGIN = HexVector{0, 0}
@@ -57,6 +81,12 @@ var hextant = map[int]int{
 	0022: 3,
 	0002: 4,
 	0000: 5,
+}
+
+// Factory Function
+func NewHexVector(hx, hy int) *HexVector {
+	hv := HexVector{hx, hy}
+	return &hv
 }
 
 // Accessor functions

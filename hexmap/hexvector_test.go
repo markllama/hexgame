@@ -2,9 +2,10 @@ package hexmap
 
 import "testing"
 import "fmt"
+import "strings"
 
 func TestConstructors(t *testing.T) {
-	var hv = HexVector{hx: 4, hy: 1}
+	hv := HexVector{4, 1}
 
 	if hv.Hx() != 4 {
 		t.Error("hv.Hx(): expected 4, actual: " + fmt.Sprintf("d", hv.Hx()))
@@ -174,3 +175,30 @@ func TestHextant(t* testing.T) {
 		}
 	}
 }
+
+
+func TestMarshal(t *testing.T) {
+	hv0 := HexVector{-3, 5}
+
+	hv_json, err := hv0.MarshalJSON()
+
+	if err != nil {
+		t.Error(fmt.Sprintf("HexVector.MarshalJSON(): error: %s", err))
+	}
+
+	hv_string := string(hv_json)
+	if strings.Compare(hv_string, "{\"hx\":-3,\"hy\":5}") != 0 {
+		t.Error(fmt.Sprintf("'%s'", hv_string))
+	}
+}
+
+
+
+// func TestUnmarshal(t *testing.T) {
+// 	var hv0 *HexVector
+
+// 	hv_string := "{\"hx\":-3,\"hy\":5}"
+
+// 	_ = hv0.UnmarshalJSON([]byte(hv_string))
+	
+// }
