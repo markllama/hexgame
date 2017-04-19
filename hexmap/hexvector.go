@@ -16,8 +16,8 @@ type hexVector struct {
 	Hy int `json:"hy"`
 }
 
-func (u HexVector) MarshalJSON() ([]byte, error) {
-	return json.Marshal(hexVector{u.Hx(), u.Hy()})
+func (hv HexVector) MarshalJSON() ([]byte, error) {
+	return json.Marshal(hexVector{hv.Hx(), hv.Hy()})
 }
 
 func (hv *HexVector) UnmarshalJSON(data []byte) error {

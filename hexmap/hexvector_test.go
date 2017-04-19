@@ -194,11 +194,17 @@ func TestMarshal(t *testing.T) {
 
 
 
-// func TestUnmarshal(t *testing.T) {
-// 	var hv0 *HexVector
+func TestUnmarshal(t *testing.T) {
+	var hv0 HexVector
+ 	hv_string := "{\"hx\":-3,\"hy\":5}"
 
-// 	hv_string := "{\"hx\":-3,\"hy\":5}"
+  err := hv0.UnmarshalJSON([]byte(hv_string))
 
-// 	_ = hv0.UnmarshalJSON([]byte(hv_string))
-	
-// }
+	if err != nil {
+		t.Error(fmt.Sprintf("HexVector.Unmarshal(): error: %s", err))
+	}
+
+	if hv0.Hx() != -3 {
+		t.Error(fmt.Sprintf("HexVector.Unmarshal() hx:  expected 3, actual: %d", hv0.Hx()))
+	}
+}
