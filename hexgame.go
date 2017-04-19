@@ -24,7 +24,7 @@ func main() {
 	session.SetMode(mgo.Monotonic, true)
 
 	c := session.DB("hexgame").C("maps")
-	err = c.Insert(&hexmap.HexMap{"Ogre", hexmap.NewHexVector(22,14), &hexmap.ORIGIN}, &hexmap.HexMap{"WarpWar", hexmap.NewHexVector(22, 15), &hexmap.ORIGIN})
+	err = c.Insert(hexmap.HexMap{"Ogre", *hexmap.NewHexVector(22,14), hexmap.ORIGIN}, hexmap.HexMap{"WarpWar", *hexmap.NewHexVector(22, 15), hexmap.ORIGIN})
 	if err != nil {
 		log.Fatal(err)
 	}

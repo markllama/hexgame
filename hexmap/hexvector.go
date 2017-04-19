@@ -3,7 +3,7 @@ package hexmap
 import (
 	"encoding/json"
 //	"gopkg.in/mgo.v2";
-//	"gopkg.in/mgo.v2/bson";
+	"gopkg.in/mgo.v2/bson";
 )
 
 type HexVector struct {
@@ -27,6 +27,22 @@ func (hv *HexVector) UnmarshalJSON(data []byte) error {
 	hv.hx = jhv.Hx
 	hv.hy = jhv.Hy
 	return nil
+}
+
+func (hv HexVector) GetBSON() (interface{}, error) {
+	return hexVector{hv.Hx(), hv.Hy()}, nil
+}
+
+func (hv *HexVector) SetBSON(raw bson.Raw) error {
+	decoded := new(hexVector)
+	bsonErr := raw.Unmarshal(decoded)
+	if bsonErr == nil {
+		hv.hx = decoded.Hx
+		hv.hy = decoded.Hy
+		return nil
+	} else {
+		return bsonErr
+	}
 }
 
 var ORIGIN = HexVector{0, 0}
