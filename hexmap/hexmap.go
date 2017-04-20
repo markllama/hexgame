@@ -26,12 +26,12 @@ func (hm HexMap) Contains(hv HexVector) bool {
 	// if the x value is out of range then definitely no
 
 	if hv.Hx() < hm.Origin.Hx() { return false }
-	if hv.Hx() > hm.Origin.Hx() + hm.Size.Hx() { return false }
+	if hv.Hx() > hm.Origin.Hx() + hm.Size.Hx() - 1 { return false }
 
 	ybias := hm.ybias(hv.Hx())
 
 	if hv.Hy() < hm.Origin.Hy() + ybias { return false }
-	if hv.Hy() > hm.Origin.Hy() + hm.Size.Hy() + ybias { return false }
+	if hv.Hy() > hm.Origin.Hy() + hm.Size.Hy() + ybias - 1 { return false }
 	return true
 }
 

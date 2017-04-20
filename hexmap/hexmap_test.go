@@ -56,6 +56,29 @@ func TestYbias(t *testing.T) {
 }
 
 
-//func TestContains(t *testing.T) {
-//	
-//}
+func TestContains(t *testing.T) {
+	hm0 := HexMap{Name: "containmenttest", Size: HexVector{14,22}, Origin: ORIGIN}
+
+	var values = []struct {
+		hv HexVector
+		contains bool
+	}{
+		{HexVector{0, 0}, true},
+		{HexVector{-1,0}, false},
+		{HexVector{13, 7}, true},
+		{HexVector{14, 7}, false},
+		{HexVector{0, 21}, true},
+		{HexVector{0, 22}, false},
+		{HexVector{13,5}, false},
+		{HexVector{13,6}, true},
+		{HexVector{13,21+6}, true},
+		{HexVector{13,21+7}, false},
+	}
+
+	for _, testvalue := range values {
+		if hm0.Contains(testvalue.hv) != testvalue.contains {
+			t.Error(fmt.Sprintf("test contains is wrong: %s", testvalue.hv))
+		}
+	}
+	
+}
