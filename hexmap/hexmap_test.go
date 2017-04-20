@@ -38,3 +38,24 @@ func TestHexMapMarshal(t *testing.T) {
 		t.Error(fmt.Sprintf("HexMap.Marshal(), - result: %s", jhm))
 	}
 }
+
+
+// test containment and bias
+
+func TestYbias(t *testing.T) {
+	hm0 := HexMap{"ybiastest", HexVector{22,14}, ORIGIN}
+
+	values := [][]int{{-3,-2}, {-2,-1}, {-1,-1}, {0,0}, {1,0}, {2,1}, {3,1}, {4,2}}
+
+	for _, pair := range values {
+		if hm0.ybias(pair[0]) != pair[1] {
+			t.Error(fmt.Sprintf("HexMap.ybias() - %d -> expect: %d, actual: %d", pair[0], pair[1], hm0.ybias(pair[0])))
+
+		}
+	}	
+}
+
+
+//func TestContains(t *testing.T) {
+//	
+//}
