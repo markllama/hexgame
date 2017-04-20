@@ -1,13 +1,16 @@
 package hexmap
 
+import "gopkg.in/mgo.v2/bson";
+
 //import "encoding/json"
 
 type HexMap struct {
+	ID bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty"`
 	Name string `json:"name"`
 	Size HexVector `json:"size"`
 	Origin HexVector `json:"origin"`
+	Terrains []Terrain `json:"terrains"`
 }
-
 
 //
 // A triangular lattice is biased wrt a rectangular coordinate system

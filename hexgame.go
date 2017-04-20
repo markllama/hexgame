@@ -23,8 +23,39 @@ func main() {
 
 	session.SetMode(mgo.Monotonic, true)
 
+	ogremap := hexmap.HexMap{
+		Name: "Ogre",
+		Size: *hexmap.NewHexVector(14,22),
+		Origin: hexmap.ORIGIN,
+		Terrains: []hexmap.Terrain{
+			{
+				"clear", "clear", []hexmap.HexVector{
+					*hexmap.NewHexVector(3, 4),
+					*hexmap.NewHexVector(2, 3),
+					*hexmap.NewHexVector(4, 20),
+				},
+			},
+		},
+	}
+		
+
+	warpwarmap := hexmap.HexMap{
+		Name: "WarpWar",
+		Size: *hexmap.NewHexVector(15,22),
+		Origin: hexmap.ORIGIN,
+		Terrains: []hexmap.Terrain{
+			{
+				"clear", "clear", []hexmap.HexVector{
+					*hexmap.NewHexVector(3, 4),
+					*hexmap.NewHexVector(2, 3),
+					*hexmap.NewHexVector(4, 20),
+				},
+			},
+		},
+	}
+
 	c := session.DB("hexgame").C("maps")
-	err = c.Insert(hexmap.HexMap{"Ogre", *hexmap.NewHexVector(22,14), hexmap.ORIGIN}, hexmap.HexMap{"WarpWar", *hexmap.NewHexVector(22, 15), hexmap.ORIGIN})
+	err = c.Insert(ogremap, warpwarmap)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -43,7 +43,7 @@ func TestHexMapMarshal(t *testing.T) {
 // test containment and bias
 
 func TestYbias(t *testing.T) {
-	hm0 := HexMap{"ybiastest", HexVector{22,14}, ORIGIN}
+	hm0 := HexMap{Name: "ybiastest", Size: HexVector{22,14}, Origin: ORIGIN}
 
 	values := [][]int{{-3,-2}, {-2,-1}, {-1,-1}, {0,0}, {1,0}, {2,1}, {3,1}, {4,2}}
 
