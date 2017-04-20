@@ -67,4 +67,9 @@ func main() {
 	}
 	
 	fmt.Println("Hexmap:", result.Name)
+	fmt.Println("Terrains:", result.Terrains)
+
+	// now try to get one back
+
+	
 }
