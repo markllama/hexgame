@@ -7,7 +7,9 @@ import (
 	//"net/url"
 	//"io"
 	"fmt"
+	"strings"
 	"encoding/json"
+	"path"
 )
 
 type HexGame struct {
@@ -58,24 +60,30 @@ func NewGameHandler(db *mgo.Database) (handler func(http.ResponseWriter, *http.R
 	
 	handler = func(w http.ResponseWriter, r *http.Request) {
 
-		
-		// the last element must be the name or ID of a game
-		//query = interface{"name": 
-		
-		var result HexGame
-		err := gameCollection.Find(nil).One(&result)
-		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
+		id_string := path.Base(r.URL.Path)
+		if ! bson.IsObjectIdHex(path.Base(id_string)) {
+			w.WriteHeader(http.StatusBadRequest)
 		} else {
-			responses, err := json.Marshal(result)
+			id := bson.ObjectIdHex(id_string)
+			var result HexGame
+			query := gameCollection.FindId(id)
+			err := query.One(&result)
 			if err != nil {
-				w.WriteHeader(http.StatusInternalServerError)
+				if strings.Compare(err.Error(), "not found") == 0 {
+					w.WriteHeader(http.StatusNotFound)
+				} else {
+					w.WriteHeader(http.StatusInternalServerError)
+				}
+			} else {
+				responses, err := json.Marshal(result)
+				if err != nil {
+					w.WriteHeader(http.StatusInternalServerError)
+				}
+				w.Header().Set("Content-Type", "application/json")
+				fmt.Fprint(w, string(responses))
 			}
-			w.Header().Set("Content-Type", "application/json")
-			fmt.Fprint(w, string(responses))
 		}
 	}
-
 	return
 }
 

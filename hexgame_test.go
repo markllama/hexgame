@@ -7,7 +7,7 @@ import (
 )
 
 func TestHexGameStruct(t *testing.T) {
-	session, err := mgo.Dial("mongodb://hexgame:ragnar@172.17.0.2/hexgame")
+	session, err := mgo.Dial("mongodb://hexgame:ragnar@127.0.0.1/hexgame")
 	if err != nil {
 		panic(err)
 	}
