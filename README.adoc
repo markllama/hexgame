@@ -48,3 +48,15 @@
 | The registered users of the service
 
 |===
+
+.Game Structure
+[ditaa]
+....
+
+ +----+
+ |    |
+ |    |
+ |    |
+ +----+
+
+....
