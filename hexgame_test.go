@@ -22,5 +22,6 @@ func TestHexGameStruct(t *testing.T) {
 
 	http.HandleFunc("/games", gameListHandler)
 	http.HandleFunc("/games/", gameHandler)
+	// http.HandleFunc("/games/{name}/maps", mapHandler)
 	http.ListenAndServe(":8000", nil)
 }

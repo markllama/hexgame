@@ -1,5 +1,14 @@
 db = db.getSiblingDB('hexgame')
 db.games.insert(
+  {
+    name: "clear",
+    title: "clear",
+    author: "Mark Lamourine",
+    copyright: "CC-BY-4.0",
+    description: "A clear map for demos and testing"
+  }
+)
+db.games.insert(
 	{
 		name: "chitin_i",
 		title: "Chitin: I",

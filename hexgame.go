@@ -60,28 +60,23 @@ func NewGameHandler(db *mgo.Database) (handler func(http.ResponseWriter, *http.R
 	
 	handler = func(w http.ResponseWriter, r *http.Request) {
 
-		id_string := path.Base(r.URL.Path)
-		if ! bson.IsObjectIdHex(path.Base(id_string)) {
-			w.WriteHeader(http.StatusBadRequest)
-		} else {
-			id := bson.ObjectIdHex(id_string)
-			var result HexGame
-			query := gameCollection.FindId(id)
-			err := query.One(&result)
-			if err != nil {
-				if strings.Compare(err.Error(), "not found") == 0 {
-					w.WriteHeader(http.StatusNotFound)
-				} else {
-					w.WriteHeader(http.StatusInternalServerError)
-				}
+		name := path.Base(r.URL.Path)
+		var result HexGame
+		query := gameCollection.Find(bson.M{"name": name})
+		err := query.One(&result)
+		if err != nil {
+			if strings.Compare(err.Error(), "not found") == 0 {
+				w.WriteHeader(http.StatusNotFound)
 			} else {
-				responses, err := json.Marshal(result)
-				if err != nil {
-					w.WriteHeader(http.StatusInternalServerError)
-				}
-				w.Header().Set("Content-Type", "application/json")
-				fmt.Fprint(w, string(responses))
+				w.WriteHeader(http.StatusInternalServerError)
 			}
+		} else {
+			responses, err := json.Marshal(result)
+			if err != nil {
+				w.WriteHeader(http.StatusInternalServerError)
+			}
+			w.Header().Set("Content-Type", "application/json")
+			fmt.Fprint(w, string(responses))
 		}
 	}
 	return

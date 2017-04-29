@@ -1,0 +1,14 @@
+db = db.getSiblingDB('hexgame')
+if (db.maps.find({"name": "clear"}) == 0) {
+  db.maps.insert(
+    {
+	    "name": "clear",
+	    "game": "clear",
+	    "copyright": "CC-4.0",
+	    "size": {"hx": 15, "hy": 21},
+	    "origin": {"hx": 0, "hy": 0},
+	    "terrains": []
+    }
+  )
+}
+  

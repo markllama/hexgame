@@ -6,7 +6,9 @@ import "gopkg.in/mgo.v2/bson";
 
 type HexMap struct {
 	ID bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty"`
+	GameID bson.ObjectId `json:"_gameid,omitempty" bson:"_gameid,omitempty"`
 	Name string `json:"name"`
+	Shape string `json:"shape"`
 	Size HexVector `json:"size"`
 	Origin HexVector `json:"origin"`
 	Terrains []Terrain `json:"terrains"`

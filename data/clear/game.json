@@ -1,0 +1,12 @@
+db = db.getSiblingDB('hexgame')
+if (db.games.find({"name": "clear"}) == 0) {
+  db.games.insert(
+    {
+	    name: "clear",
+	    title: "Clear Map",
+	    author: "Mark Lamourine",
+	    copyright: "CC-3.0",
+	    description: "A clear map game for testing and demonstration"
+    }
+  )
+}

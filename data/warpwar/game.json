@@ -1,0 +1,12 @@
+db = db.getSiblingDB('hexgame')
+if (db.games.find({"name": "warpwar"}).count() == 0) {
+  db.games.insert(
+	  {
+		  name: "warpwar",
+		  title: "Warp War",
+		  author: "Howard Thompson",
+		  copyright: "1977 Metagaming",
+		  description: "MicroGame 4: Warp War"
+	  }
+  )
+}

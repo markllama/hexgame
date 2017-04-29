@@ -1,6 +1,9 @@
 ADMIN_PASSWORD=tesselation
+HEXGAME_DATABASE=hexgame
+HEXGAME_USERNAME=hexgame
 HEXGAME_PASSWORD=ragnar
 MONGO_ADDRESS=127.0.0.1
+MONGO_LOAD=mongo --username=${HEXGAME_USERNAME} --password=${HEXGAME_PASSWORD} ${MONGO_ADDRESS}/${HEXGAME_DATABASE}
 
 mongo-service:
 	docker run -d --network host --name hexgame-db mongo --auth ;
@@ -20,4 +23,10 @@ clean-db:
 	docker stop hexgame-db ; docker rm hexgame-db
 
 load-games:
-	mongo --username hexgame --password=ragnar ${MONGO_ADDRESS}/hexgame ../data/games.json
+	${MONGO_LOAD} ../data/clear/game.json
+	${MONGO_LOAD} ../data/clear/map.json
+	${MONGO_LOAD} ../data/warpwar/game.json
+	${MONGO_LOAD} ../data/warpwar/map.json
+	${MONGO_LOAD} ../data/blackhole/game.json
+	${MONGO_LOAD} ../data/blackhole/map.json
+#	mongo --username hexgame --password=ragnar ${MONGO_ADDRESS}/hexgame ../data/games.json

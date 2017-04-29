@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<map name="warpwar" game="warpwar">
+  <copyright>(C) 1977 Metagaming</copyright>
+  <size><vector hx="15" hy="22" /></size>
+  <origin><vector hx="0" hy="0"/></origin>
+
+  <terrains>
+    
+    <terrain type="basestar" name="Mosul" id="0">
+      <locations>
+        <vector hx="3" hy="2" />
+      </locations>
+    </terrain>
+
+    <terrain type="basestar" name="Ur" id="0">
+      <locations>
+        <vector hx="7" hy="5" />
+      </locations>
+    </terrain>
+
+    <terrain type="basestar" name="Larsu" id="0">
+      <locations>
+        <vector hx="11" hy="7" />
+      </locations>
+    </terrain>
+  
+    <terrain type="basestar" name="Ninevah" id="0">
+      <locations>
+        <vector hx="3" hy="20" />
+      </locations>
+    </terrain>
+
+    <terrain type="basestar" name="Babylon" id="0">
+      <locations>
+        <vector hx="6" hy="21" />
+      </locations>
+    </terrain>
+
+    <terrain type="basestar" name="Ugarit" id="0">
+      <locations>
+        <vector hx="11" hy="25" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Sippur" id="0">
+      <locations>
+        <vector hx="2" hy="5" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Erech" id="0">
+      <locations>
+        <vector hx="4" hy="6" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Calah" id="0">
+      <locations>
+        <vector hx="8" hy="8" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Susa" id="0">
+      <locations>
+        <vector hx="12" hy="11" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Byblos" id="0">
+      <locations>
+        <vector hx="2" hy="7" />
+      </locations>
+    </terrain>
+    
+    <terrain type="star" name="Adab" id="0">
+      <locations>
+        <vector hx="6" hy="9" />
+      </locations>
+    </terrain>
+    
+    <terrain type="star" name="Nippur" id="0">
+      <locations>
+        <vector hx="11" hy="12" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Ubaid" id="0">
+      <locations>
+        <vector hx="3" hy="9" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Khafa" id="0">
+      <locations>
+        <vector hx="7" hy="12" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Mari" id="0">
+      <locations>
+        <vector hx="6" hy="13" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Lagash" id="0">
+      <locations>
+        <vector hx="9" hy="15" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Assur" id="0">
+      <locations>
+        <vector hx="12" hy="16" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Elam" id="0">
+      <locations>
+        <vector hx="7" hy="15" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Jarmo" id="0">
+      <locations>
+        <vector hx="11" hy="17" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Sumarra" id="0">
+      <locations>
+        <vector hx="2" hy="13" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Umma" id="0">
+      <locations>
+        <vector hx="5" hy="16" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Girsu" id="0">
+      <locations>
+        <vector hx="8" hy="17" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Isin" id="0">
+      <locations>
+        <vector hx="1" hy="15" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Sumer" id="0">
+      <locations>
+        <vector hx="4" hy="18" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Akkad" id="0">
+      <locations>
+        <vector hx="7" hy="19" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Kish" id="0">
+      <locations>
+        <vector hx="10" hy="20" />
+      </locations>
+    </terrain>
+
+    <terrain type="star" name="Eridu" id="0">
+      <locations>
+        <vector hx="12" hy="22" />
+      </locations>
+    </terrain>
+
+
+    <!-- Warp Lines -->
+
+    <terrain type="warpline" name="mosul2sippur" id="">
+      <locations>
+        <!-- -->
+        <vector hx="3" hy="2" />
+        <vector hx="2" hy="5" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="ur2erech" id="">
+      <locations>
+        <!-- -->
+        <vector hx="7" hy="5" />
+        <vector hx="4" hy="6" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="erech2adab" id="">
+      <locations>
+        <!-- -->
+        <vector hx="4" hy="6" />
+        <vector hx="6" hy="9" />
+      </locations>
+    </terrain>
+    
+    <terrain type="warpline" name="adab2byblos" id="">
+      <locations>
+        <!-- -->
+        <vector hx="6" hy="9" />
+        <vector hx="2" hy="7" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="adab2khafa" id="">
+      <locations>
+        <!-- -->
+        <vector hx="6" hy="9" />
+        <vector hx="7" hy="12" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="larsu2susa" id="">
+      <locations>
+        <!-- -->
+        <vector hx="11" hy="7" />
+        <vector hx="12" hy="11" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="susa2nippur" id="">
+      <locations>
+        <!-- -->
+        <vector hx="12" hy="11" />
+        <vector hx="11" hy="12" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="calah2nippur" id="">
+      <locations>
+        <!-- -->
+        <vector hx="8" hy="8" />
+        <vector hx="11" hy="12" />
+      </locations>
+    </terrain>
+    
+    <terrain type="warpline" name="nippur2lagash" id="">
+      <locations>
+        <!-- -->
+        <vector hx="11" hy="12" />
+        <vector hx="9" hy="15" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="nippur2assur" id="">
+      <locations>
+        <!-- -->
+        <vector hx="11" hy="12" />
+        <vector hx="12" hy="16" />
+      </locations>
+    </terrain>
+    
+    <terrain type="warpline" name="lagash2assur" id="">
+      <locations>
+        <!-- -->
+        <vector hx="9" hy="15" />
+        <vector hx="12" hy="16" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="lagash2elam" id="">
+      <locations>
+        <!-- -->
+        <vector hx="9" hy="15" />
+        <vector hx="7" hy="15" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="ubaid2mari" id="">
+      <locations>
+        <!-- -->
+        <vector hx="3" hy="9" />
+        <vector hx="6" hy="13" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="ubaid2sumarra" id="">
+      <locations>
+        <!-- -->
+        <vector hx="3" hy="9" />
+        <vector hx="2" hy="13" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="mari2umma" id="">
+      <locations>
+        <!-- -->
+        <vector hx="6" hy="13" />
+        <vector hx="5" hy="16" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="sumarra2umma" id="">
+      <locations>
+        <!-- -->
+        <vector hx="2" hy="13" />
+        <vector hx="5" hy="16" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="umma2girsu" id="">
+      <locations>
+        <!-- -->
+        <vector hx="5" hy="16" />
+        <vector hx="8" hy="17" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="umma2sumer" id="">
+      <locations>
+        <!-- -->
+        <vector hx="5" hy="16" />
+        <vector hx="4" hy="18" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="sumer2babylon" id="">
+      <locations>
+        <!-- -->
+        <vector hx="4" hy="18" />
+        <vector hx="6" hy="21" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="jarmo2kish" id="">
+      <locations>
+        <!-- -->
+        <vector hx="11" hy="17" />
+        <vector hx="10" hy="20" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="kish2akkid" id="">
+      <locations>
+        <!-- -->
+        <vector hx="10" hy="20" />
+        <vector hx="7" hy="19" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="kish2eridu" id="">
+      <locations>
+        <!-- -->
+        <vector hx="10" hy="20" />
+        <vector hx="12" hy="22" />
+      </locations>
+    </terrain>
+    
+    <terrain type="warpline" name="eridu2ugarit" id="">
+      <locations>
+        <!-- -->
+        <vector hx="12" hy="22" />
+        <vector hx="11" hy="25" />
+      </locations>
+    </terrain>
+
+    <terrain type="warpline" name="isin2nineveh" id="">
+      <locations>
+        <!-- -->
+        <vector hx="1" hy="15" />
+        <vector hx="3" hy="20" />
+      </locations>
+    </terrain>
+  </terrains>
+</map>
+  
