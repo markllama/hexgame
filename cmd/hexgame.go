@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 //	"io"
 	"io/ioutil"
@@ -8,6 +9,8 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2"
 	"net/http"
+
+	"github.com/markllama/hexgame-server/hexgame"
 )
 
 type Config struct {
@@ -19,8 +22,14 @@ type Config struct {
 
 func main() {
 
+	var config_file string
+
+	flag.StringVar(&config_file, "config-file", "hexgamerc.json",
+		"Hexgame server configuration file")
+	flag.Parse()
+	
 	// load configuration
-	config_string, err := ioutil.ReadFile("hexmaprc.json")
+	config_string, err := ioutil.ReadFile(config_file)
 	if err != nil {
 		panic(err)
 	}
@@ -46,13 +55,16 @@ func main() {
 	}
 	defer dbSession.Close()
 	dbSession.SetMode(mgo.Monotonic, true)
+	gdb := dbSession.DB("hexgame")
 
-	http.HandleFunc("/games", GameHandler)
-	
+	gameListHandler := hexgame.NewGameListHandler(gdb)
+	gameHandler := hexgame.NewGameHandler(gdb)
+
+	http.HandleFunc("/games", gameListHandler)
+	http.HandleFunc("/games/", gameHandler)
+	// http.HandleFunc("/games/{name}/maps", mapHandler)
+
 	// run web service
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func GameHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, world\n")
-}
