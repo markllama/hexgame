@@ -34,7 +34,7 @@ func TestHexMapMarshal(t *testing.T) {
 		t.Error(fmt.Sprintf("HexMap.Marshal() - error: %s", err))
 	}
 
-	if strings.Compare(string(jhm), "{\"name\":\"TestMap\",\"size\":{\"hx\":22,\"hy\":14},\"origin\":{\"hx\":0,\"hy\":0},\"terrains\":null}") != 0 { 
+	if strings.Compare(string(jhm), "{\"name\":\"TestMap\",\"shape\":\"\",\"size\":{\"hx\":22,\"hy\":14},\"origin\":{\"hx\":0,\"hy\":0},\"terrains\":null}") != 0 { 
 		t.Error(fmt.Sprintf("HexMap.Marshal(), - result: %s", jhm))
 	}
 }
