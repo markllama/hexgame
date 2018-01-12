@@ -5,6 +5,16 @@ HEXGAME_PASSWORD=ragnar
 MONGO_ADDRESS=127.0.0.1
 MONGO_LOAD=mongo --username=${HEXGAME_USERNAME} --password=${HEXGAME_PASSWORD} ${MONGO_ADDRESS}/${HEXGAME_DATABASE}
 
+
+usage:
+	@echo "make mongo-service"
+	@echo "make mongo-admin-password"
+	@echo "make create-hexgame-db"
+	@echo
+	@echo "make db-ip-address"
+	@echo
+	@echo "make load-games"
+
 mongo-service:
 	docker run -d --network host --name hexgame-db mongo --auth ;
 
