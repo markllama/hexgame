@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/markllama/hexgame"
+import "github.com/markllama/hexgame/server"
 
 func main() {
 	server.Main()
