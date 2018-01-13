@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+go build -o bin/hexgame github.com/markllama/hexgame/cmd/hexgame
