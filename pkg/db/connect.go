@@ -1,8 +1,6 @@
 package db
 
 import (
-	"fmt"
-
 	"time"
 	"gopkg.in/mgo.v2"
 )
@@ -16,8 +14,6 @@ const (
 )
 
 func Connect() (*mgo.Database) {
-	fmt.Println("In db connect")
-
 	info := &mgo.DialInfo{
 		Addrs:    []string{hosts},
 		Timeout:  60 * time.Second,

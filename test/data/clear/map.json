@@ -11,4 +11,3 @@ if (db.maps.find({"name": "clear"}).count() == 0) {
     }
   )
 }
-  
