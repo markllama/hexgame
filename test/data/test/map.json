@@ -1,0 +1,11 @@
+db = db.getSiblingDB('hexgame')
+if (db.maps.find({"name": "test"}).count() == 0) {
+  db.maps.insert(
+    {
+	    "name": "test",
+	    "game": "test",
+	    "copyright": "CC-4.0",
+    }
+  )
+}
+  

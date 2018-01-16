@@ -1,5 +1,5 @@
 db = db.getSiblingDB('hexgame')
-if (db.games.find({"name": "clear"}) == 0) {
+if (db.games.find({"name": "clear"}).count() == 0) {
   db.games.insert(
     {
 	    name: "clear",
