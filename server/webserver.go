@@ -7,13 +7,9 @@ import (
 	"log"	
 	"net/http"
 	"gopkg.in/mgo.v2"
-
-	"github.com/markllama/hexgame/pkg/hexgame"
 )
 
 func CreateWebServer(db *mgo.Database) {
-
-	http.Handle("/games", HandleGames)
 	
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
