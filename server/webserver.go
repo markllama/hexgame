@@ -7,15 +7,18 @@ import (
 	"log"	
 	"net/http"
 	"gopkg.in/mgo.v2"
+
+	"github.com/markllama/hexgame/pkg/hexgame"
 )
 
-func CreateWebServer(*mgo.Database) {
+func CreateWebServer(db *mgo.Database) {
+
+	http.Handle("/games", HandleGames)
 	
-	//http.Handle("/foo", fooHandler)
-	
-	//http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
-	//	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-	//})
+	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte("{\"foo\": \"bar\"}\n"))
+	})
 
 	http.HandleFunc("/quit", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Good Bye", html.EscapeString(r.URL.Path))
