@@ -4,7 +4,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-type HexGame struct {
+type Game struct {
 	ID bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty"`
 	Name string `json:"name" bson:"name"`
 	Title string `json:"title" bson:"title"`

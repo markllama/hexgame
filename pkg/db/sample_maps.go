@@ -6,14 +6,14 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/markllama/hexgame/pkg/hexgame"
+	"github.com/markllama/hexgame/api/hexgame"
 )
 
 func SampleGame(db *mgo.Database) () {
 
 	games := db.C("games")
 
-	result := hexgame.HexGame{}
+	result := hexgame.Game{}
 	err := games.Find(bson.M{"name": "clear"}).One(&result)
 	if err != nil {
 		panic(err)
