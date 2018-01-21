@@ -3,7 +3,7 @@ package db
 import (
 	"testing"
 	gamedb "github.com/markllama/hexgame/pkg/db"
-	"github.com/markllama/hexgame/api/hexgame"
+	"github.com/markllama/hexgame/types/hexgame"
 
 )
 

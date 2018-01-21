@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/markllama/hexgame/api/hexgame"
+	"github.com/markllama/hexgame/types/hexgame"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"encoding/json"
