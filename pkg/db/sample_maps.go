@@ -6,7 +6,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/markllama/hexgame/api/hexgame"
+	"github.com/markllama/hexgame/types/hexgame"
 )
 
 func SampleGame(db *mgo.Database) () {
