@@ -13,7 +13,6 @@ func AllGames(col *mgo.Collection) (games []Game, err error) {
 	var hg []hexgame.Game
 	q := col.Find(nil)
 
-
 	n, err := q.Count()
 	games = make([]Game, n)
 	
