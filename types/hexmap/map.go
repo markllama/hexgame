@@ -1,8 +1,8 @@
 package hexmap
 
-import (
-	"gopkg.in/mgo.v2"
-)
+//import (
+//	"gopkg.in/mgo.v2"
+//)
 
 type Map struct {
 	Name string `json:"name"`
