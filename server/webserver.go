@@ -14,6 +14,7 @@ import (
 func CreateWebServer(db *mgo.Database) {
 
 	http.Handle("/game/", handler.GameServer(db))
+	http.Handle("/map/", handler.MapServer(db))
 	
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
