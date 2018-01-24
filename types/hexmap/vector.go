@@ -1,5 +1,9 @@
 package hexmap
 
+//import (
+//	"encoding/json"
+//}
+
 type Vector struct {
 	Hx int `json:"hx" bson:"hx"`
 	Hy int `json:"hy" bson:"hy"`
@@ -105,6 +109,13 @@ func (v Vector) Hextant() (int) {
 	return hextant[m]
 }
 
-//func (v Vector) MarshalJSON () (b []byte, err error) {
-//	
-//}
+/*
+func (v *Vector) UnmarshalJSON(b []byte) error {
+
+}
+
+
+func (v Vector) MarshalJSON () (b []byte, err error) {
+	
+}
+*/
