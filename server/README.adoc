@@ -1,0 +1,26 @@
+= Hexgame Server
+
+RESTish server (I'm not a purist)
+
+----
+/game/[name]
+
+/map/[name]
+
+----
+
+
+== RPC Operations
+
+=== ID/Auth
+
+=== User
+
+* Create
+* Update
+* Delete
+
+
+=== Game
+
+* 

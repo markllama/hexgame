@@ -1,6 +1,6 @@
 package hexmap
 
 type Terrain struct {
-	Type string         `json:"type"`
+	Name string         `json:"name"`
 	Locations []Vector  `json:"locations"`
 }
