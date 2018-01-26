@@ -13,7 +13,7 @@ const (
 	password   = "ragnar"
 )
 
-func Connect() (*mgo.Database) {
+func Connect() (*mgo.Session) {
 	info := &mgo.DialInfo{
 		Addrs:    []string{hosts},
 		Timeout:  60 * time.Second,
@@ -27,7 +27,7 @@ func Connect() (*mgo.Database) {
 		panic(err1)
 	}
 
-	db := session.DB(database)
+	//db := session.DB(database)
 	
-	return db
+	return session
 }

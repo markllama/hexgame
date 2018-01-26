@@ -11,9 +11,15 @@ import (
 	"github.com/markllama/hexgame/server/handler"
 )
 
-func CreateWebServer(db *mgo.Database) {
+func CreateWebServer(s *mgo.Session) {
 
-	http.Handle("/game/", handler.GameServer(db))
+	session := s.Copy()
+	defer session.Close()
+	
+	db := session.DB("hexgame")
+	
+	http.HandleFunc("/game/", handler.GameServerFunc(session))
+	//http.Handle("/game/", handler.GameServer(db))
 	http.Handle("/map/", handler.MapServer(db))
 	
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {

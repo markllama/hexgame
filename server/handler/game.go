@@ -5,7 +5,7 @@ package handler
 
 import (
 	"net/http"
-	"net/url"
+ 	"net/url"
 	"gopkg.in/mgo.v2"
 	"github.com/markllama/hexgame/types/hexgame"
 	"github.com/markllama/hexgame/server/db"
