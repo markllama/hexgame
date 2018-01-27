@@ -48,17 +48,13 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 		} else {
 
 			var hm []hexmap.Map
-			q := c.Find(nil)
+			c.Find(nil).All(&hm)
 
-			n, _ := q.Count()
-			maps := make([]hexmap.Map, n)
-			q.All(&hm)
-
-			maprefs := make([]MapRef, len(maps))
+			maprefs := make([]MapRef, len(hm))
 
 			murl := url.URL{Scheme: "http", Host: r.Host}
 
-			for index, hmap := range maps {
+			for index, hmap := range hm {
 				murl.Path = path.Join(r.URL.Path, hmap.Name)
 				maprefs[index].Name = hmap.Name
 				maprefs[index].URL = murl.String()

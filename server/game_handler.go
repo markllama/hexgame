@@ -50,17 +50,14 @@ func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 
 
 			var hg []hexgame.Game
-			q := c.Find(nil)
-
-			n, _ := q.Count()
-			games := make([]hexgame.Game, n)
-			q.All(&hg)
+			
+			c.Find(nil).All(&hg)
 	
-			gamerefs := make([]GameRef, len(games))
+			gamerefs := make([]GameRef, len(hg))
 
 			gurl := url.URL{Scheme: "http", Host: r.Host}
 		
-			for index, game := range games {
+			for index, game := range hg {
 				gurl.Path = path.Join(r.URL.Path, game.Name)
 				gamerefs[index].Name = game.Name
 				gamerefs[index].URL = gurl.String()
