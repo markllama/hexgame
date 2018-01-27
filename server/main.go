@@ -25,7 +25,7 @@ const (
 	password   = "ragnar"
 )
 
-func Connect() (*mgo.Database) {
+func Connect() (*mgo.Session) {
 	info := &mgo.DialInfo{
 		Addrs:    []string{hosts},
 		Timeout:  60 * time.Second,
@@ -34,22 +34,25 @@ func Connect() (*mgo.Database) {
 		Password: password,
 	}
 
-	session, err1 := mgo.DialWithInfo(info)
-	if err1 != nil {
-		panic(err1)
+	session, err := mgo.DialWithInfo(info)
+	if err != nil {
+		panic(err)
 	}
 
-	db := session.DB(database)
-	
-	return db
+	//db := session.DB(database)
+	//return db
+
+	return session
 }
 
 func Main() {
 
 	// connect to database
-	database := Connect()
-
-	http.Handle("/game/", handler.GameServer(database))
+	session := Connect()
+	database := session.DB("hexgame")
+	
+	//http.Handle("/game/", handler.GameServer(database))
+	http.HandleFunc("/game/", GameHandleFunc(session))
 	http.Handle("/map/", handler.MapServer(database))
 	
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
@@ -70,13 +73,13 @@ type GameRef struct {
 	URL string `json:"url"`
 }
 
-func GameHandlerFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
-
-	sc := s.Copy()
-	defer sc.Close()
+func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 	
 	f := func(w http.ResponseWriter, r *http.Request) {
 		var g hexgame.Game
+
+		sc := s.Copy()
+		defer sc.Close()
 
 		c := sc.DB("hexgame").C("games")
 		
