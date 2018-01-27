@@ -1,0 +1,55 @@
+db = db.getSiblingDB('hexgame')
+if (db.users.find({"username": "mark"}).count() == 0) {
+  db.users.insert(
+    [
+      {
+        "username": "mark",
+        "first_name": "Mark",
+        "surname": "Lamourine",
+        "email_address": "markllama@gmail.com"
+      },
+      {
+        "username": "chip",
+        "first_name": "Chip",
+        "surname": "Mefford",
+        "email_address": "cpm@well.com"
+      },
+      {
+        "username": "chiara",
+        "first_name": "Chiara",
+        "surname": "Lamourine",
+        "email_address": "chiara.lamourinegmail.com"
+      },
+      {
+        "username": "jenna",
+        "first_name": "Jenna",
+        "surname": "Lamourine",
+        "email_address": "jennallama@gmail.com"
+      },
+      {
+        "username": "alex",
+        "first_name": "Alex",
+        "surname": "Buchannan",
+        "email_address": "alex.buchannon@student.uml.edu"
+      },
+      {
+        "username": "thea",
+        "first_name": "Thea",
+        "surname": "Fennell",
+        "email_address": "thea.fennell@iacs.org"
+      },
+      {
+        "username": "richie",
+        "first_name": "Richie",
+        "surname": "DeJesus",
+        "email_address": "richie@gmail.com"
+      },
+      {
+        "username": "curt",
+        "first_name": "Curt",
+        "surname": "Fennell",
+        "email_address": "curt.fennell@gmail.com"
+      }
+    ]
+  )
+}

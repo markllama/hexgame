@@ -18,7 +18,6 @@ type MapRef struct {
 
 func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)) {
 
-
 	f := func(w http.ResponseWriter, r *http.Request) {
 
 		var m hexmap.Map
@@ -32,6 +31,9 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 
 		_, name := path.Split(r.URL.Path)
 
+		//
+		// Return a specific map if named
+		//
 		if (name != "") {
 			q := c.Find(bson.M{"name": name})
 			// check for errors
@@ -45,6 +47,10 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 			m.URL = murl.String()
 			p, _ := json.Marshal(m)
 			w.Write(p)
+
+		//
+		// Return references to all available maps
+		//
 		} else {
 
 			var hm []hexmap.Map

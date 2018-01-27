@@ -41,6 +41,7 @@ load-games: mongo-create-hexgame-db
 	${MONGO_LOAD} ../data/warpwar/map.json
 	${MONGO_LOAD} ../data/blackhole/game.json
 	${MONGO_LOAD} ../data/blackhole/map.json
+	${MONGO_LOAD} ../data/players.json
 #	mongo --username hexgame --password=ragnar ${MONGO_ADDRESS}/hexgame ../data/games.json
 	touch load-games
 
