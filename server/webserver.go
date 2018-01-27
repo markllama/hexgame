@@ -13,12 +13,9 @@ import (
 
 func CreateWebServer(s *mgo.Session) {
 
-	session := s.Copy()
-	defer session.Close()
-	
-	db := session.DB("hexgame")
-	
-	http.HandleFunc("/game/", handler.GameServerFunc(session))
+	db := s.DB("hexgame")
+
+	http.HandleFunc("/game/", handler.GameServerFunc(s))
 	//http.Handle("/game/", handler.GameServer(db))
 	http.Handle("/map/", handler.MapServer(db))
 	
