@@ -44,6 +44,8 @@ func Main() {
 	
 	http.HandleFunc("/game/", GameHandleFunc(session))
 	http.HandleFunc("/map/", MapHandleFunc(session))
+
+	http.HandleFunc("/match/", MatchHandleFunc(session))
 	
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
