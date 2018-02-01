@@ -1,4 +1,4 @@
-package hexmap
+package db
 
 type Token struct {
 	Name string `json:"name"`

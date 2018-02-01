@@ -1,4 +1,4 @@
-package hexmap
+package db
 
 //import (
 //	"encoding/json"

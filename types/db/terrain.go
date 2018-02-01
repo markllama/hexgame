@@ -1,4 +1,4 @@
-package hexmap
+package db
 
 type Terrain struct {
 	Name string         `json:"name"`
