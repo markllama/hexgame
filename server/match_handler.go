@@ -78,10 +78,10 @@ func GetMatchList(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 func GetMatch(s *mgo.Session, id string, w http.ResponseWriter, r *http.Request) {
 	var m db.Match
 
-	c := s.DB("hexgame").C("matches")
+	c_matches := s.DB("hexgame").C("matches")
 	//c.Find(nil).All(&m)
 	
-	q := c.Find(bson.M{"_id": bson.ObjectIdHex(id)})
+	q := c_matches.Find(bson.M{"_id": bson.ObjectIdHex(id)})
 	// check for errors
 	err := q.One(&m)
 	if (err != nil) {
@@ -89,6 +89,16 @@ func GetMatch(s *mgo.Session, id string, w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	c_games := s.DB("hexgame").C("games")
+	
+	var g db.Game
+
+	q_games := c_games.Find(bson.M{"_id": m.GameId})
+	err = q_games.One(&g)
+	if (err != nil) {
+		http.Error(w, fmt.Sprintf("game not found"), http.StatusInternalServerError)
+		return
+	}
 	
 	murl := url.URL{Scheme: "http", Host: r.Host, Path: r.URL.Path}
 	m.URL = murl.String()
