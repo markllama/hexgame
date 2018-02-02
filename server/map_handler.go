@@ -9,12 +9,8 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"github.com/markllama/hexgame/types/db"
+	"github.com/markllama/hexgame/types/api"
 )
-
-type MapRef struct {
-	Name string `json:"name"`
-	URL string `json:"url"`
-}
 
 func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)) {
 
@@ -56,7 +52,7 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 			var hm []db.Map
 			c.Find(nil).All(&hm)
 
-			maprefs := make([]MapRef, len(hm))
+			maprefs := make([]api.MapRef, len(hm))
 
 			murl := url.URL{Scheme: "http", Host: r.Host}
 

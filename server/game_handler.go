@@ -9,13 +9,8 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"github.com/markllama/hexgame/types/db"
+	"github.com/markllama/hexgame/types/api"
 )
-
-
-type GameRef struct {
-	Name string `json:"name"`
-	URL string `json:"url"`
-}
 
 func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 	
@@ -53,7 +48,7 @@ func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 			
 			c.Find(nil).All(&hg)
 	
-			gamerefs := make([]GameRef, len(hg))
+			gamerefs := make([]api.GameRef, len(hg))
 
 			gurl := url.URL{Scheme: "http", Host: r.Host}
 		

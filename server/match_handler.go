@@ -10,13 +10,9 @@ import (
 	"encoding/json"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-
 	"github.com/markllama/hexgame/types/db"
+	"github.com/markllama/hexgame/types/api"
 )
-
-//type MatchRef struct {
-//	
-//}
 
 // MatchHandleFunc processes and responds to HTTP queries
 // GET/name - return one
@@ -56,12 +52,6 @@ func MatchHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Reques
 	return f
 }
 
-type MatchRef struct {
-	Id bson.ObjectId `json:"id"`
-	GameId bson.ObjectId `json:"game_id"`
-	URL string `json:"url"`
-}
-
 func GetMatchList(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 
 	var m []db.Match
@@ -69,7 +59,7 @@ func GetMatchList(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 	c := s.DB("hexgame").C("matches")
 	c.Find(nil).All(&m)
 
-	matchrefs := make([]MatchRef, len(m))
+	matchrefs := make([]api.MatchRef, len(m))
 
 	murl := url.URL{Scheme: "http", Host: r.Host}
 
