@@ -91,7 +91,7 @@ func GetMatch(s *mgo.Session, id string, w http.ResponseWriter, r *http.Request)
 	c := s.DB("hexgame").C("matches")
 	//c.Find(nil).All(&m)
 	
-	q := c.Find(bson.M{"_id": id})
+	q := c.Find(bson.M{"_id": bson.ObjectIdHex(id)})
 	// check for errors
 	err := q.One(&m)
 	if (err != nil) {
