@@ -1,7 +1,7 @@
-package db
+package query
 
 import (
-	"github.com/markllama/hexgame/types/hexmap"
+	"github.com/markllama/hexgame/types/db"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"encoding/json"
@@ -10,12 +10,12 @@ import (
 
 type Map struct {
 	Col *mgo.Collection `json:"-" bson:"-"`
-	hexmap.Map
+	db.Map
 	Clean bool `json:"-" bson:"-"`
 }
 
 func AllMaps(col *mgo.Collection) (maps []Map, err error) {
-	var hm []hexmap.Map
+	var hm []db.Map
 	q := col.Find(nil)
 
 	n, err := q.Count()

@@ -1,7 +1,7 @@
-package db
+package query
 
 import (
-	"github.com/markllama/hexgame/types/hexgame"
+	"github.com/markllama/hexgame/types/db"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"encoding/json"
@@ -10,7 +10,7 @@ import (
 
 func AllGames(col *mgo.Collection) (games []Game, err error) {
 
-	var hg []hexgame.Game
+	var hg []db.Game
 	q := col.Find(nil)
 
 	n, err := q.Count()
@@ -27,7 +27,7 @@ func AllGames(col *mgo.Collection) (games []Game, err error) {
 
 type Game struct {
 	Col *mgo.Collection `json:"-" bson:"-"`
-	hexgame.Game
+	db.Game
 	Clean bool `json:"-" bson:"-"`
 }
 

@@ -11,7 +11,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/markllama/hexgame/types"
+	"github.com/markllama/hexgame/types/db"
 )
 
 //type MatchRef struct {
@@ -64,7 +64,7 @@ type MatchRef struct {
 
 func GetMatchList(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 
-	var m []types.Match
+	var m []db.Match
 
 	c := s.DB("hexgame").C("matches")
 	c.Find(nil).All(&m)
@@ -86,7 +86,7 @@ func GetMatchList(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 }
 
 func GetMatch(s *mgo.Session, id string, w http.ResponseWriter, r *http.Request) {
-	var m types.Match
+	var m db.Match
 
 	c := s.DB("hexgame").C("matches")
 	//c.Find(nil).All(&m)
@@ -116,7 +116,7 @@ func CreateMatch(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var m types.Match
+	var m db.Match
 
 	// marshal the POST data into a Match
 	err = json.Unmarshal(body, &m)

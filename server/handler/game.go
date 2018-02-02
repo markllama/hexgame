@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/url"
 	"gopkg.in/mgo.v2"
-	"github.com/markllama/hexgame/types/hexgame"
-	"github.com/markllama/hexgame/server/db"
+	"github.com/markllama/hexgame/types/db"
+	"github.com/markllama/hexgame/server/query"
 	"fmt"
 	"path"
 	"encoding/json"
@@ -35,7 +35,7 @@ func (hg Game) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	_, name := path.Split(r.URL.Path)
 
 	if (name != "") {
-		g := db.Game{hg.mcol, hexgame.Game{ Name : name }, false}
+		g := query.Game{hg.mcol, db.Game{ Name : name }, false}
 		err := g.Get()
 		if (err != nil) {
 			http.Error(w, fmt.Sprintf("game %s not found", name), 404)
@@ -50,7 +50,7 @@ func (hg Game) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(p))
 	} else {
 
-		games, _ := db.AllGames(hg.mcol)
+		games, _ := query.AllGames(hg.mcol)
 		gamerefs := make([]GameRef, len(games))
 		
 		gurl := url.URL{Scheme: "http", Host: r.Host}

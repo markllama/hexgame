@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"net/url"
 	"gopkg.in/mgo.v2"
-	"github.com/markllama/hexgame/types/hexmap"
-	"github.com/markllama/hexgame/server/db"
+	"github.com/markllama/hexgame/types/db"
+	"github.com/markllama/hexgame/server/query"
 	"fmt"
 	"path"
 	"encoding/json"
@@ -31,7 +31,7 @@ func (hm Map) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	_, name := path.Split(r.URL.Path)
 
 	if (name != "") {
-		m := db.Map{hm.mcol, hexmap.Map{Name: name}, false}
+		m := query.Map{hm.mcol, db.Map{Name: name}, false}
 		err := m.Get()
 		if (err != nil) {
 			http.Error(w, fmt.Sprintf("map %s not found", name), 404)
@@ -44,7 +44,7 @@ func (hm Map) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(p))
 	} else {
 
-		maps, _ := db.AllMaps(hm.mcol)
+		maps, _ := query.AllMaps(hm.mcol)
 		maprefs := make([]MapRef, len(maps))
 
 		murl := url.URL{Scheme: "http", Host: r.Host}

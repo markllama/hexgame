@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/markllama/hexgame/types/hexmap"
+	"github.com/markllama/hexgame/types/db"
 )
 
 type MapRef struct {
@@ -20,7 +20,7 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 
 	f := func(w http.ResponseWriter, r *http.Request) {
 
-		var m hexmap.Map
+		var m db.Map
 
 		sc := s.Copy()
 		defer sc.Close()
@@ -53,7 +53,7 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 		//
 		} else {
 
-			var hm []hexmap.Map
+			var hm []db.Map
 			c.Find(nil).All(&hm)
 
 			maprefs := make([]MapRef, len(hm))

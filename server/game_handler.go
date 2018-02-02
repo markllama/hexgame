@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/markllama/hexgame/types/hexgame"
+	"github.com/markllama/hexgame/types/db"
 )
 
 
@@ -20,7 +20,7 @@ type GameRef struct {
 func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 	
 	f := func(w http.ResponseWriter, r *http.Request) {
-		var g hexgame.Game
+		var g db.Game
 
 		sc := s.Copy()
 		defer sc.Close()
@@ -49,7 +49,7 @@ func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 		} else {
 
 
-			var hg []hexgame.Game
+			var hg []db.Game
 			
 			c.Find(nil).All(&hg)
 	
