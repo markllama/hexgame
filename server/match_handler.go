@@ -67,8 +67,10 @@ func GetMatchList(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 		murl.Path = path.Join(r.URL.Path, match.Id.Hex())
 		matchrefs[index].Id = match.Id
 
+		var g db.Game
+		g.Get(s.DB("hexgame").C("games"), bson.M{"_id": match.GameId})
 		// get the game with the specified ID and retrieve the name
-		matchrefs[index].Game = match.GameId.Hex()
+		matchrefs[index].Game = g.Name
 		matchrefs[index].URL = murl.String()
 	}
 	
