@@ -66,7 +66,9 @@ func GetMatchList(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 	for index, match := range m {
 		murl.Path = path.Join(r.URL.Path, match.Id.Hex())
 		matchrefs[index].Id = match.Id
-		matchrefs[index].GameId = match.GameId
+
+		// get the game with the specified ID and retrieve the name
+		matchrefs[index].Game = match.GameId.Hex()
 		matchrefs[index].URL = murl.String()
 	}
 	
@@ -90,19 +92,31 @@ func GetMatch(s *mgo.Session, id string, w http.ResponseWriter, r *http.Request)
 	}
 
 	c_games := s.DB("hexgame").C("games")
-	
 	var g db.Game
-
-	q_games := c_games.Find(bson.M{"_id": m.GameId})
-	err = q_games.One(&g)
+	err = g.Get(c_games, bson.M{"_id": m.GameId})
 	if (err != nil) {
 		http.Error(w, fmt.Sprintf("game not found"), http.StatusInternalServerError)
 		return
 	}
-	
+
+	c_users := s.DB("hexgame").C("users")
+	var u db.User
+	err = u.Get(c_users, bson.M{"_id": m.OwnerId})
+	if (err != nil) {
+		http.Error(w, fmt.Sprintf("user not found"), http.StatusInternalServerError)
+		return
+	}
+
+	var data api.Match
+	data.Id = m.Id
+	data.Game = g.Name
+	data.Owner = u.Username
+	data.CreateTime = m.CreateTime
+	data.StartTime = m.StartTime
+
 	murl := url.URL{Scheme: "http", Host: r.Host, Path: r.URL.Path}
-	m.URL = murl.String()
-	p, _ := json.Marshal(m)
+	data.URL = murl.String()
+	p, _ := json.Marshal(data)
 	w.Write(p)
 }
 

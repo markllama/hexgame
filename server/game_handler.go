@@ -28,10 +28,8 @@ func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 
 		if (name != "") {
 
-			q := c.Find(bson.M{"name": name})
-			// check for errors
-			// err := q.One(&g.Game)
-			err := q.One(&g)
+			
+			err := g.Get(c, bson.M{"name": name})
 			if (err != nil) {
 				http.Error(w, fmt.Sprintf("game %s not found", name), 404)
 				return

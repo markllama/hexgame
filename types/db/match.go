@@ -2,6 +2,7 @@ package db
 
 import (
 	"time"
+	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -14,4 +15,8 @@ type Match struct {
 	Players []bson.ObjectId `json:"players"`
 	MapId bson.ObjectId `json:"map_id"`
 	URL string `bson:"-" json:"url"`
+}
+
+func (m Match) Get(c *mgo.Collection, selector bson.M) (error) {
+	return c.Find(selector).One(&m)
 }

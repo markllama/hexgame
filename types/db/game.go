@@ -1,6 +1,7 @@
 package db
 
 import (
+	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -12,4 +13,8 @@ type Game struct {
 	Copyright string `json:"copyright" bson:"copyright"`
 	Description string `json:"description" bson:"description"`
 	URL string `json:"url,omitempty" bson:"-"`
+}
+
+func (g *Game) Get(c *mgo.Collection, selector bson.M) (error) {
+	return c.Find(selector).One(&g)
 }
