@@ -6,7 +6,7 @@ import (
 )
 
 type Game struct {
-	ID bson.ObjectId `json:"-" bson:"_id,omitempty"`
+	Id bson.ObjectId `json:"-" bson:"_id,omitempty"`
 	Name string `json:"name" bson:"name"`
 	Title string `json:"title" bson:"title"`
 	Author string `json:"author" bson:"author"`

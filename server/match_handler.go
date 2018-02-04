@@ -2,11 +2,13 @@ package server
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"path"
 	"net/http"
 	"net/url"
+	"time"
 	"encoding/json"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -132,7 +134,7 @@ func CreateMatch(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var m db.Match
+	var m api.Match
 
 	// marshal the POST data into a Match
 	err = json.Unmarshal(body, &m)
@@ -142,9 +144,46 @@ func CreateMatch(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Required: owner
+	// Required: game
+	if (m.Game == "" || m.Owner == "") {
+		http.Error(w, "{'message': 'missing required fields', 'sample': {'game': '', 'owner': ''}}", http.StatusBadRequest)
+	}
+
+
+	var hdb = s.DB("hexgame")
 	
-	// Required: owner ID
-	// Required: game ID
+	var g db.Game
+	g.Get(hdb.C("games"), bson.M{"name": m.Game})
+
+	var u db.User
+	u.Get(hdb.C("users"), bson.M{"username": m.Owner})
+	
+	c_matches := hdb.C("matches")
+
+	var mdb db.Match
+
+	mdb.Id = bson.NewObjectId()
+	mdb.GameId = g.Id
+	mdb.OwnerId = u.Id
+	mdb.CreateTime = time.Now()
+	mdb.MapId = bson.NewObjectIdWithTime(bson.Now())
+
+	err = mdb.Put(c_matches)
+	if (err != nil) {
+		http.Error(w, fmt.Sprintf("{'message': '%s}", err), http.StatusInternalServerError)
+	}
+
+	m.Id = mdb.Id
+	m.CreateTime = mdb.CreateTime
+	
+	murl := url.URL{Scheme: "http", Host: r.Host, Path: r.URL.Path + mdb.Id.Hex()}
+	m.URL = murl.String()
+
+	p, _ := json.Marshal(&m)
+
+	w.WriteHeader(http.StatusCreated)
+	io.WriteString(w, string(p))
 }
 
 //func DeleteMatch(s *mgo.Session, w, http.ResponseWriter, r *http.Response) {
