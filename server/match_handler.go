@@ -17,9 +17,11 @@ import (
 )
 
 // MatchHandleFunc processes and responds to HTTP queries
-// GET/name - return one
+// GET/id - return one
 // GET/     - return references
 // POST     - create a new one
+// DELETE/id
+
 func MatchHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)) {
 
 	f := func(w http.ResponseWriter, r *http.Request) {
@@ -46,8 +48,8 @@ func MatchHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Reques
 
 
 		// delete a match
-		//case http.MethodDelete:
-		//	DeleteMatch(s, w, r)
+		case http.MethodDelete:
+			DeleteMatch(s, w, r)
 		}
 	}
 
@@ -186,6 +188,6 @@ func CreateMatch(s *mgo.Session, w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, string(p))
 }
 
-//func DeleteMatch(s *mgo.Session, w, http.ResponseWriter, r *http.Response) {
-//
-//}
+func DeleteMatch(s *mgo.Session, w, http.ResponseWriter, r *http.Response) {
+	
+}

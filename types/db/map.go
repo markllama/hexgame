@@ -16,7 +16,6 @@ type Map struct {
 	Origin Vector `json:"origin"`
 	Terrains []Terrain `json:"terrains"`
 	Tokens []Token `json:"tokens,omitempty"`
-	URL string `json:"url,omitempty" bson:"-"`
 }
 
 func (m *Map) Get(c mgo.Collection, selector bson.M) (error) {
