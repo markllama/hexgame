@@ -8,8 +8,9 @@ import (
 )
 
 type Map struct {
+	Id bson.ObjectId `bson:"_id,omitempty"`
 	Name string `json:"name"`
-	Game string `json:"game"`
+	GameId bson.ObjectId `json:"game_id" bson:"game_id"`
 	Copyright string `json:"copyright"`
 	Shape string `json:"shape"`
 	Size Vector `json:"size"`
@@ -21,3 +22,4 @@ type Map struct {
 func (m *Map) Get(c mgo.Collection, selector bson.M) (error) {
 	return c.Find(selector).One(&m)
 }
+

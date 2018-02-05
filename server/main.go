@@ -37,10 +37,12 @@ func Connect() (*mgo.Session) {
 	return session
 }
 
-func Main() {
+func Main(code_root *string) {
 
 	// connect to database
 	session := Connect()
+
+	http.Handle("/js", http.FileServer(http.Dir(*code_root)))
 	
 	http.HandleFunc("/game/", GameHandleFunc(session))
 	http.HandleFunc("/map/", MapHandleFunc(session))

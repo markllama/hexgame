@@ -14,8 +14,17 @@
 
 package main
 
-import "github.com/markllama/hexgame/server"
+import (
+	"flag"
+	
+	"github.com/markllama/hexgame/server"
+)
 
 func main() {
-	server.Main()
+
+	js_dir := flag.String("js-dir", "./js", "the location of the Javascript code")
+
+	
+
+	server.Main(js_dir)
 }

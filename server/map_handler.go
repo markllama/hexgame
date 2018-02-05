@@ -16,7 +16,7 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 
 	f := func(w http.ResponseWriter, r *http.Request) {
 
-		var m db.Map
+		var md db.Map
 
 		sc := s.Copy()
 		defer sc.Close()
@@ -33,15 +33,25 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 		if (name != "") {
 			q := c.Find(bson.M{"name": name})
 			// check for errors
-			err := q.One(&m)
+			err := q.One(&md)
 			if (err != nil) {
 				http.Error(w, fmt.Sprintf("map %s not found", name), 404)
 				return
 			}
 
+			var ma api.Map
+
+			ma.Name = md.Name
+			// ma.Game = db.Game.Get(md.GameId).Name
+			ma.Copyright = md.Copyright
+			ma.Shape = md.Shape
+			ma.Copyright = md.Copyright
+			ma.Size = api.Vector(md.Size)
+			ma.Origin = api.Vector(md.Origin)
+			
 			murl := url.URL{Scheme: "http", Host: r.Host, Path: r.URL.Path}
-			m.URL = murl.String()
-			p, _ := json.Marshal(m)
+			ma.URL = murl.String()
+			p, _ := json.Marshal(ma)
 			w.Write(p)
 
 		//
