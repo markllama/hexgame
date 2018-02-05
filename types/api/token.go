@@ -1,6 +1,10 @@
 package api
 
+import (
+	"github.com/markllama/hexgame/types"
+)
+
 type Token struct {
 	Name string `json:"name"`
-	Location Vector `json:"location"`
+	Location types.Vector `json:"location"`
 }

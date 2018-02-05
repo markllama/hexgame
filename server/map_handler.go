@@ -46,8 +46,8 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 			ma.Copyright = md.Copyright
 			ma.Shape = md.Shape
 			ma.Copyright = md.Copyright
-			ma.Size = api.Vector(md.Size)
-			ma.Origin = api.Vector(md.Origin)
+			ma.Size.Copy(md.Size)
+			ma.Origin.Copy(md.Origin)
 			
 			murl := url.URL{Scheme: "http", Host: r.Host, Path: r.URL.Path}
 			ma.URL = murl.String()

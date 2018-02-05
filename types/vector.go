@@ -1,4 +1,4 @@
-package db
+package types
 
 //import (
 //	"encoding/json"
@@ -61,6 +61,11 @@ var hextant = map[int]int{
 
 func (v Vector) Hz() (int) {
 	return v.Hy - v.Hx
+}
+
+func (v0 *Vector) Copy(v1 Vector) {
+	v0.Hx = v1.Hx
+	v0.Hy = v1.Hy
 }
 
 func (v0 Vector) Equal(v1 Vector) (bool) {

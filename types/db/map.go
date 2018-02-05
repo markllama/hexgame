@@ -1,10 +1,10 @@
 package db
 
 import (
-	//"fmt"
-	//"encoding/json"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+
+	"github.com/markllama/hexgame/types"
 )
 
 type Map struct {
@@ -13,8 +13,8 @@ type Map struct {
 	GameId bson.ObjectId `json:"game_id" bson:"game_id"`
 	Copyright string `json:"copyright"`
 	Shape string `json:"shape"`
-	Size Vector `json:"size"`
-	Origin Vector `json:"origin"`
+	Size types.Vector `json:"size"`
+	Origin types.Vector `json:"origin"`
 	Terrains []Terrain `json:"terrains"`
 	Tokens []Token `json:"tokens,omitempty"`
 }
