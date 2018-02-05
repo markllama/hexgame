@@ -10,13 +10,6 @@ type MapRef struct {
 }
 
 type Map struct {
-	Name string `json:"name"`
-	Game string `json:"game"`
-	Copyright string `json:"copyright"`
-	Shape string `json:"shape"`
-	Size types.Vector `json:"size"`
-	Origin types.Vector `json:"origin"`
-	Terrains []types.Terrain `json:"terrains"`
-	Tokens []types.Token `json:"tokens,omitempty"`
+	types.Map
 	URL string `json:"url,omitempty"`
 }

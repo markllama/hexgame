@@ -9,14 +9,7 @@ import (
 
 type Map struct {
 	Id bson.ObjectId `bson:"_id,omitempty"`
-	Name string `json:"name"`
-	GameId bson.ObjectId `json:"game_id" bson:"game_id"`
-	Copyright string `json:"copyright"`
-	Shape string `json:"shape"`
-	Size types.Vector `json:"size"`
-	Origin types.Vector `json:"origin"`
-	Terrains []types.Terrain `json:"terrains"`
-	Tokens []types.Token `json:"tokens,omitempty"`
+	types.Map
 }
 
 func (m *Map) Get(c mgo.Collection, selector bson.M) (error) {
