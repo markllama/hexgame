@@ -16,7 +16,7 @@ type Map struct {
 	Shape string `json:"shape"`
 	Size types.Vector `json:"size"`
 	Origin types.Vector `json:"origin"`
-	Terrains []Terrain `json:"terrains"`
-	Tokens []Token `json:"tokens,omitempty"`
+	Terrains []types.Terrain `json:"terrains"`
+	Tokens []types.Token `json:"tokens,omitempty"`
 	URL string `json:"url,omitempty"`
 }
