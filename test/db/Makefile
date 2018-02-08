@@ -34,13 +34,13 @@ db-ip-address:
 
 load-games: mongo-create-hexgame-db
 	${MONGO_LOAD} ../data/test/game.json
-	${MONGO_LOAD} ../data/test/map.json
+#	${MONGO_LOAD} ../data/test/map.json
 	${MONGO_LOAD} ../data/clear/game.json
-	${MONGO_LOAD} ../data/clear/map.json
+#	${MONGO_LOAD} ../data/clear/map.json
 	${MONGO_LOAD} ../data/warpwar/game.json
-	${MONGO_LOAD} ../data/warpwar/map.json
+#	${MONGO_LOAD} ../data/warpwar/map.json
 	${MONGO_LOAD} ../data/blackhole/game.json
-	${MONGO_LOAD} ../data/blackhole/map.json
+#	${MONGO_LOAD} ../data/blackhole/map.json
 	${MONGO_LOAD} ../data/players.json
 #	${MONGO_LOAD} ../data/matches.json
 #	${MONGO_LOAD} ../data/match_maps.json
