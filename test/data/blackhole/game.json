@@ -13,350 +13,215 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
   )
 
   map_id = ObjectId()
+  db = db.getSiblingDB('hexgame')
   db.maps.insert(
     {
       _id: map_id,
-      "game_id": game_id, 
+      game_id: game_id,
       "name": "blackhole",
       "copyright": "Steve Jackson Games", 
       "shape": "rectangle", 
-      "size": {
-        "hx": 15, 
-        "hy": 31
-      },
-      "origin": {
-        "hx": 0, 
-        "hy": 0
-      }, 
+      "size": { "hx": 15, "hy": 31 },
+      "origin": { "hx": 0, "hy": 0 }, 
       "terrains": [
-        {
-          "type": "BlackHole.Terrain.Exterior", 
+        { "type": "BlackHole.Terrain.Exterior", 
           "name": "exterior", 
           "locations": []
-        }, 
-        {
-          "type": "BlackHole.Terrain.Interior", 
+        },
+        { "type": "BlackHole.Terrain.Interior", 
           "name": "interior", 
           "locations": []
         }, 
-        {
-          "type": "BlackHole.Terrain.Mountain", 
+        { "type": "BlackHole.Terrain.Mountain", 
           "name": "mountain", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 4
-            }
+            { "hx": 0, "hy": 4 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Crater", 
+        { "type": "BlackHole.Terrain.Crater", 
           "name": "crater", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 8
-            }
+            { "hx": 0, "hy": 8 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap0", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 0
-            }
+            { "hx": 0, "hy": 0 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap1", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 1
-            }
+            { "hx": 0, "hy": 1 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap2", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 2
-            }
+            { "hx": 0, "hy": 2 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap3", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 3
-            }
+            { "hx": 0, "hy": 3 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap4", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 4
-            }
+            { "hx": 0, "hy": 4 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap5", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 5
-            }
+            { "hx": 0, "hy": 5 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap6", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 6
-            }
+            { "hx": 0, "hy": 6 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap7", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 7
-            }
+            { "hx": 0, "hy": 7 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap8", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 8
-            }
+            { "hx": 0, "hy": 8 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap9", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 9
-            }
+            { "hx": 0, "hy": 9 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap10", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 10
-            }
+            { "hx": 0, "hy": 10 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap11", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 11
-            }
+            { "hx": 0, "hy": 11 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap12", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 12
-            }
+            { "hx": 0, "hy": 12 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap13", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 13
-            }
+            { "hx": 0, "hy": 13 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap14", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 14
-            }
+            { "hx": 0, "hy": 14 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap15", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 15
-            }
+            { "hx": 0, "hy": 15 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap16", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 16
-            }
+            { "hx": 0, "hy": 16 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap17", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 17
-            }
+            { "hx": 0, "hy": 17 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap18", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 18
-            }
+            { "hx": 0, "hy": 18 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap19", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 19
-            }
+            { "hx": 0, "hy": 19 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap20", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 20
-            }
+            { "hx": 0, "hy": 20 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap21", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 21
-            }
+            { "hx": 0, "hy": 21 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap22", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 22
-            }
+            { "hx": 0, "hy": 22 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap23", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 23
-            }
+            { "hx": 0, "hy": 23 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap24", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 24
-            }
+            { "hx": 0, "hy": 24 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap25", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 25
-            }
+            { "hx": 0, "hy": 25 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap26", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 26
-            }
+            { "hx": 0, "hy": 26 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap27", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 27
-            }
+            { "hx": 0, "hy": 27 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap28", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 28
-            }
+            { "hx": 0, "hy": 28 }
           ]
         }, 
-        {
-          "type": "BlackHole.Terrain.Wrap", 
+        { "type": "BlackHole.Terrain.Wrap", 
           "name": "wrap29", 
           "locations": [
-            {
-              "hx": 0, 
-              "hy": 29
-            }
+            { "hx": 0, "hy": 29 }
           ]
         }
       ], 
