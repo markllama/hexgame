@@ -28,7 +28,6 @@ func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 
 		if (name != "") {
 
-			
 			err := g.Get(c, bson.M{"name": name})
 			if (err != nil) {
 				http.Error(w, fmt.Sprintf("game %s not found", name), 404)
@@ -36,8 +35,8 @@ func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 			}
 
 			gurl := url.URL{Scheme: "http", Host: r.Host, Path: r.URL.Path}
-			g.URL = gurl.String()
-			p, _ := json.Marshal(g)
+			ga := api.Game{Game: g.Game, URL: gurl.String()}
+			p, _ := json.Marshal(ga)
 			w.Write(p)
 		} else {
 
@@ -57,6 +56,7 @@ func GameHandleFunc(s *mgo.Session) (func(http.ResponseWriter, *http.Request)) {
 			}
 		
 			jgames, _ := json.Marshal(gamerefs)
+//			jgames, _ := json.Marshal(hg)
 		
 			w.Write([]byte(jgames))
 		}

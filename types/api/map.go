@@ -10,6 +10,7 @@ type MapRef struct {
 }
 
 type Map struct {
-	types.Map
+	Game string `json:"game,omitempty"`
+	types.Map `json:",inline"`
 	URL string `json:"url,omitempty"`
 }

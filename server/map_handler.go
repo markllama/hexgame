@@ -39,19 +39,21 @@ func MapHandleFunc(s *mgo.Session) (func(w http.ResponseWriter, r *http.Request)
 				return
 			}
 
-			var ma api.Map
-
-			ma.Name = md.Name
-			// ma.Game = db.Game.Get(md.GameId).Name
-			ma.Copyright = md.Copyright
-			ma.Shape = md.Shape
-			ma.Copyright = md.Copyright
-			ma.Size.Copy(md.Size)
-			ma.Origin.Copy(md.Origin)
+			gc := sc.DB("hexgame").C("games")
+			var gd db.Game
+			gq := gc.Find(bson.M{"_id": md.GameId})
+			err = gq.One(&gd)
+			if (err != nil) {
+				http.Error(w, fmt.Sprintf("matching game not found"), 404)
+				return
+			}
+			
+			game_name := gd.Name
 			
 			murl := url.URL{Scheme: "http", Host: r.Host, Path: r.URL.Path}
-			ma.URL = murl.String()
-			p, _ := json.Marshal(ma)
+			ma := api.Map{Game: game_name, Map: md.Map, URL: murl.String()}
+			p, _ := json.Marshal(&ma)
+			//p, _ := json.Marshal(&md)
 			w.Write(p)
 
 		//
