@@ -16,17 +16,17 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
   db.maps.insert(
     {
       _id: map_id,
+      "game_id": game_id,
       "name": "warpwar",
-      "game_id": game_id, 
       "copyright": "(C) 1977 Metagaming", 
       "shape": "rectangle", 
       "size": {
-        "hx": "15", 
-        "hy": "22"
+        "hx": 15, 
+        "hy": 22
       },
       "origin": {
-        "hx": "0", 
-        "hy": "0"
+        "hx": 0, 
+        "hy": 0
       }, 
       "terrains": [
         {
@@ -34,8 +34,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Mosul", 
           "locations": [
             {
-              "hx": "3", 
-              "hy": "2"
+              "hx": 3, 
+              "hy": 2
             }
           ]
         }, 
@@ -44,8 +44,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Ur", 
           "locations": [
             {
-              "hx": "7", 
-              "hy": "5"
+              "hx": 7, 
+              "hy": 5
             }
           ]
         }, 
@@ -54,8 +54,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Larsu", 
           "locations": [
             {
-              "hx": "11", 
-              "hy": "7"
+              "hx": 11, 
+              "hy": 7
             }
           ]
         }, 
@@ -64,8 +64,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Ninevah", 
           "locations": [
             {
-              "hx": "3", 
-              "hy": "20"
+              "hx": 3, 
+              "hy": 20
             }
           ]
         }, 
@@ -74,8 +74,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Babylon", 
           "locations": [
             {
-              "hx": "6", 
-              "hy": "21"
+              "hx": 6, 
+              "hy": 21
             }
           ]
         }, 
@@ -84,8 +84,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Ugarit", 
           "locations": [
             {
-              "hx": "11", 
-              "hy": "25"
+              "hx": 11, 
+              "hy": 25
             }
           ]
         }, 
@@ -94,8 +94,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Sippur", 
           "locations": [
             {
-              "hx": "2", 
-              "hy": "5"
+              "hx": 2, 
+              "hy": 5
             }
           ]
         }, 
@@ -104,8 +104,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Erech", 
           "locations": [
             {
-              "hx": "4", 
-              "hy": "6"
+              "hx": 4, 
+              "hy": 6
             }
           ]
         }, 
@@ -114,8 +114,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Calah", 
           "locations": [
             {
-              "hx": "8", 
-              "hy": "8"
+              "hx": 8, 
+              "hy": 8
             }
           ]
         }, 
@@ -124,8 +124,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Susa", 
           "locations": [
             {
-              "hx": "12", 
-              "hy": "11"
+              "hx": 12, 
+              "hy": 11
             }
           ]
         }, 
@@ -134,8 +134,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Byblos", 
           "locations": [
             {
-              "hx": "2", 
-              "hy": "7"
+              "hx": 2, 
+              "hy": 7
             }
           ]
         }, 
@@ -144,8 +144,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Adab", 
           "locations": [
             {
-              "hx": "6", 
-              "hy": "9"
+              "hx": 6, 
+              "hy": 9
             }
           ]
         }, 
@@ -154,8 +154,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Nippur", 
           "locations": [
             {
-              "hx": "11", 
-              "hy": "12"
+              "hx": 11, 
+              "hy": 12
             }
           ]
         }, 
@@ -164,8 +164,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Ubaid", 
           "locations": [
             {
-              "hx": "3", 
-              "hy": "9"
+              "hx": 3, 
+              "hy": 9
             }
           ]
         }, 
@@ -174,8 +174,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Khafa", 
           "locations": [
             {
-              "hx": "7", 
-              "hy": "12"
+              "hx": 7, 
+              "hy": 12
             }
           ]
         }, 
@@ -184,8 +184,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Mari", 
           "locations": [
             {
-              "hx": "6", 
-              "hy": "13"
+              "hx": 6, 
+              "hy": 13
             }
           ]
         }, 
@@ -194,8 +194,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Lagash", 
           "locations": [
             {
-              "hx": "9", 
-              "hy": "15"
+              "hx": 9, 
+              "hy": 15
             }
           ]
         }, 
@@ -204,8 +204,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Assur", 
           "locations": [
             {
-              "hx": "12", 
-              "hy": "16"
+              "hx": 12, 
+              "hy": 16
             }
           ]
         }, 
@@ -214,8 +214,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Elam", 
           "locations": [
             {
-              "hx": "7", 
-              "hy": "15"
+              "hx": 7, 
+              "hy": 15
             }
           ]
         }, 
@@ -224,8 +224,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Jarmo", 
           "locations": [
             {
-              "hx": "11", 
-              "hy": "17"
+              "hx": 11, 
+              "hy": 17
             }
           ]
         }, 
@@ -234,8 +234,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Sumarra", 
           "locations": [
             {
-              "hx": "2", 
-              "hy": "13"
+              "hx": 2, 
+              "hy": 13
             }
           ]
         }, 
@@ -244,8 +244,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Umma", 
           "locations": [
             {
-              "hx": "5", 
-              "hy": "16"
+              "hx": 5, 
+              "hy": 16
             }
           ]
         }, 
@@ -254,8 +254,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Girsu", 
           "locations": [
             {
-              "hx": "8", 
-              "hy": "17"
+              "hx": 8, 
+              "hy": 17
             }
           ]
         }, 
@@ -264,8 +264,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Isin", 
           "locations": [
             {
-              "hx": "1", 
-              "hy": "15"
+              "hx": 1, 
+              "hy": 15
             }
           ]
         }, 
@@ -274,8 +274,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Sumer", 
           "locations": [
             {
-              "hx": "4", 
-              "hy": "18"
+              "hx": 4, 
+              "hy": 18
             }
           ]
         }, 
@@ -284,8 +284,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Akkad", 
           "locations": [
             {
-              "hx": "7", 
-              "hy": "19"
+              "hx": 7, 
+              "hy": 19
             }
           ]
         }, 
@@ -294,8 +294,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Kish", 
           "locations": [
             {
-              "hx": "10", 
-              "hy": "20"
+              "hx": 10, 
+              "hy": 20
             }
           ]
         }, 
@@ -304,8 +304,8 @@ if (db.games.find({"name": "warpwar"}).count() == 0) {
           "name": "Eridu", 
           "locations": [
             {
-              "hx": "12", 
-              "hy": "22"
+              "hx": 12, 
+              "hy": 22
             }
           ]
         }, 

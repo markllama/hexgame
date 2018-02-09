@@ -16,34 +16,24 @@ if (db.games.find({"name": "test"}).count() == 0) {
   db.maps.insert(
     {
       _id: map_id,
-	    "name": "test",
 	    "game_id": game_id,
+	    "name": "test",
 	    "copyright": "CC-4.0",
       "shape": "rectangle", 
       "size": {
-        "hx": "15", 
-        "hy": "22"
+        "hx": 15, 
+        "hy": 22
       },
       "origin": {
-        "hx": "0", 
-        "hy": "0"
+        "hx": 0, 
+        "hy": 0
       }, 
       "terrains": [
-        {"name": "mountain", "locations": [
-          {"hx": 3, "hy": 6}
-        ]},
-        {"name": "crater", "locations": [
-          {"hx": 6, "hy": 9}
-          
-        ]},
-        {"name": "forest", "locations": [
-          {"hx": 12, "hy": 5}
-
-        ]},
-        {"name": "desert", "locations": [
-          {"hx": 7, "hy": 15}
-
-        ]}
+        {"name": "bush",
+         "locations": [
+           {"hx": 3, "hy": 3} 
+         ]
+        }
       ]
     }
   )

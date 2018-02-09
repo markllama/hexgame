@@ -14,20 +14,19 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
 
   map_id = ObjectId()
   db.maps.insert(
-
     {
       _id: map_id,
-      "name": "blackhole",
       "game_id": game_id, 
+      "name": "blackhole",
       "copyright": "Steve Jackson Games", 
       "shape": "rectangle", 
       "size": {
-        "hx": "15", 
-        "hy": "31"
+        "hx": 15, 
+        "hy": 31
       },
       "origin": {
-        "hx": "0", 
-        "hy": "0"
+        "hx": 0, 
+        "hy": 0
       }, 
       "terrains": [
         {
@@ -45,8 +44,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "mountain", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "4"
+              "hx": 0, 
+              "hy": 4
             }
           ]
         }, 
@@ -55,8 +54,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "crater", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "8"
+              "hx": 0, 
+              "hy": 8
             }
           ]
         }, 
@@ -65,8 +64,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap0", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "0"
+              "hx": 0, 
+              "hy": 0
             }
           ]
         }, 
@@ -75,8 +74,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap1", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "1"
+              "hx": 0, 
+              "hy": 1
             }
           ]
         }, 
@@ -85,8 +84,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap2", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "2"
+              "hx": 0, 
+              "hy": 2
             }
           ]
         }, 
@@ -95,8 +94,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap3", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "3"
+              "hx": 0, 
+              "hy": 3
             }
           ]
         }, 
@@ -105,8 +104,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap4", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "4"
+              "hx": 0, 
+              "hy": 4
             }
           ]
         }, 
@@ -115,8 +114,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap5", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "5"
+              "hx": 0, 
+              "hy": 5
             }
           ]
         }, 
@@ -125,8 +124,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap6", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "6"
+              "hx": 0, 
+              "hy": 6
             }
           ]
         }, 
@@ -135,8 +134,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap7", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "7"
+              "hx": 0, 
+              "hy": 7
             }
           ]
         }, 
@@ -145,8 +144,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap8", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "8"
+              "hx": 0, 
+              "hy": 8
             }
           ]
         }, 
@@ -155,8 +154,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap9", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "9"
+              "hx": 0, 
+              "hy": 9
             }
           ]
         }, 
@@ -165,8 +164,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap10", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "10"
+              "hx": 0, 
+              "hy": 10
             }
           ]
         }, 
@@ -175,8 +174,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap11", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "11"
+              "hx": 0, 
+              "hy": 11
             }
           ]
         }, 
@@ -185,8 +184,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap12", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "12"
+              "hx": 0, 
+              "hy": 12
             }
           ]
         }, 
@@ -195,8 +194,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap13", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "13"
+              "hx": 0, 
+              "hy": 13
             }
           ]
         }, 
@@ -205,8 +204,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap14", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "14"
+              "hx": 0, 
+              "hy": 14
             }
           ]
         }, 
@@ -215,8 +214,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap15", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "15"
+              "hx": 0, 
+              "hy": 15
             }
           ]
         }, 
@@ -225,8 +224,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap16", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "16"
+              "hx": 0, 
+              "hy": 16
             }
           ]
         }, 
@@ -235,8 +234,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap17", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "17"
+              "hx": 0, 
+              "hy": 17
             }
           ]
         }, 
@@ -245,8 +244,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap18", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "18"
+              "hx": 0, 
+              "hy": 18
             }
           ]
         }, 
@@ -255,8 +254,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap19", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "19"
+              "hx": 0, 
+              "hy": 19
             }
           ]
         }, 
@@ -265,8 +264,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap20", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "20"
+              "hx": 0, 
+              "hy": 20
             }
           ]
         }, 
@@ -275,8 +274,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap21", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "21"
+              "hx": 0, 
+              "hy": 21
             }
           ]
         }, 
@@ -285,8 +284,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap22", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "22"
+              "hx": 0, 
+              "hy": 22
             }
           ]
         }, 
@@ -295,8 +294,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap23", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "23"
+              "hx": 0, 
+              "hy": 23
             }
           ]
         }, 
@@ -305,8 +304,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap24", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "24"
+              "hx": 0, 
+              "hy": 24
             }
           ]
         }, 
@@ -315,8 +314,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap25", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "25"
+              "hx": 0, 
+              "hy": 25
             }
           ]
         }, 
@@ -325,8 +324,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap26", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "26"
+              "hx": 0, 
+              "hy": 26
             }
           ]
         }, 
@@ -335,8 +334,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap27", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "27"
+              "hx": 0, 
+              "hy": 27
             }
           ]
         }, 
@@ -345,8 +344,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap28", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "28"
+              "hx": 0, 
+              "hy": 28
             }
           ]
         }, 
@@ -355,8 +354,8 @@ if (db.games.find({"name": "blackhole"}).count() == 0) {
           "name": "wrap29", 
           "locations": [
             {
-              "hx": "0", 
-              "hy": "29"
+              "hx": 0, 
+              "hy": 29
             }
           ]
         }

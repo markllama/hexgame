@@ -15,12 +15,7 @@ if (db.maps.find({"name": "blackhole"}).count() == 0) {
         "hx": 0, 
         "hy": 0
       }, 
-      "terrains": [
-        {
-          "name": "mountain",
-          "locations": []
-        }
-      ]
+      "terrains": [ ]
     }
   )
 }

@@ -17,11 +17,11 @@ if (db.games.find({"name": "clear"}).count() == 0) {
 
   db.maps.insert({
     _id: map_id,
-    "name": "clear",
     "game_id": game_id,
+    "name": "clear",
 	  "copyright": "CC-4.0",
 	  "size": {"hx": 15, "hy": 21},
-	  "origin": {"hx": 0, "hy": 0},
+	  "origin": {"hx": 1, "hy": 1},
 	  "terrains": []
   })
 }
