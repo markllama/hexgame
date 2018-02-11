@@ -21,6 +21,13 @@ var UNIT = []Vector{
 	Vector{ 0, -1},
 }
 
+type Axis int
+const (
+	HX Axis = iota
+	HY
+	HZ
+)
+
 /*
 # on axis
 #  0-1-1 0  100  0b010000
@@ -114,14 +121,3 @@ func (v Vector) Hextant() (int) {
 	
 	return hextant[m]
 }
-
-/*
-func (v *Vector) UnmarshalJSON(b []byte) error {
-
-}
-
-
-func (v Vector) MarshalJSON () (b []byte, err error) {
-	
-}
-*/
