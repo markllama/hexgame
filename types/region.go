@@ -15,30 +15,42 @@ type CircularRegion struct {
 	Radius int `json:"radius"`
 }
 	
-func (r CircularRegion) All() ([]Vector) {
+func (region CircularRegion) All(m *Map) ([]Vector) {
 
-	var v []Vector
+	var hexes []Vector
+	var origin Vector
+	//var size Vector
+	
+	if m != nil {
+		origin = m.Origin
+	} else {
+		origin = ORIGIN
+	}
 
  	// start at -x, scan to +x, filling in all y
- 	for hx := -(r.Radius - 1) ; hx <= r.Radius - 1 ; hx++ {
+ 	for hx := -(region.Radius - 1) ; hx <= region.Radius - 1 ; hx++ {
 		var hy_low, hy_high int
 		if hx <= 0 {
-			hy_low = -(r.Radius -1)
-			hy_high = (r.Radius -1) + hx
+			hy_low = -(region.Radius -1)
+			hy_high = (region.Radius -1) + hx
 		} else {
-			hy_low = -(r.Radius - 1) + hx
-			hy_high = r.Radius - 1
+			hy_low = -(region.Radius - 1) + hx
+			hy_high = region.Radius - 1
 		}
  		for hy := hy_low ; hy <= hy_high  ; hy++ {
-			v = append(v, Vector{hx, hy})
+			hex := Vector{hx + origin.Hx, hy + origin.Hy}
+			if m == nil || m.Contains(hex) {
+				hexes = append(hexes, hex)
+			}
 		}
  	}
 	
-	return v
+	return hexes
 }
 
-func (r CircularRegion) Contains(location Vector) (bool) {
+func (r CircularRegion) Contains(location Vector, m *Map) (bool) {
 	// if the location is within Radius hexes of Center
+	
 	return location.Distance(r.Center) <= r.Radius
 }
 

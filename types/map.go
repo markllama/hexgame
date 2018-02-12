@@ -24,3 +24,34 @@ func (m0 *Map) Copy(m1 Map) {
 
 	// copy all the tokens
 }
+
+
+func (m *Map) Ybias(hx int) (int) {
+	// 0 -> 0
+	// 1 -> 0
+	// 2 -> 1
+	// 3 -> 1
+
+	if hx >= 0  { return hx / 2 }
+
+	// -1 -> -1
+	// -2 -> -1
+	// -3 -> -2
+	// -3 -> -2
+	return -((-hx + 1) / 2)
+}
+
+func (m *Map) Contains(v Vector) (bool) {
+
+	// Test if it's off the left or right side
+	if v.Hx < m.Origin.Hx || v.Hx >= m.Origin.Hx + m.Size.Hx {
+		return false
+	}
+	
+	ybias := m.Ybias(v.Hx)
+	if v.Hy < m.Origin.Hy + ybias || v.Hy >= m.Origin.Hy + m.Size.Hy + ybias {
+		return false
+	}
+	
+	return true
+}
