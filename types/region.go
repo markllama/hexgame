@@ -1,14 +1,27 @@
 package types
 
-/*
-This class represents a set of hexes on a map.
-*/
+//
+// This class represents a set of hexes on a map.
+//
 
+
+type Region struct {
+	Origin Vector `bson:"origin"`
+	Size Vector `bson:"size"`
+}
+
+
+func (r Region) Contains(v Vector, m *Map) {
+	
+	
+	
+}
+
+/*
 type Region interface {
 	All() []Vector
 	Contains(Vector) bool
 }
-
 
 type CircularRegion struct {
 	Center Vector `json:"center"`
@@ -54,28 +67,5 @@ func (r CircularRegion) Contains(location Vector, m *Map) (bool) {
 	return m.Contains(location) && location.Distance(r.Center) <= r.Radius
 }
 
-//
-//
-//
+*/
 
-type RectangularRegion struct {
-	Origin Vector
-	Size Vector
-}
-
-
-//
-//
-//
-type LineRegion struct {
-	// define a line and which side of the line is "inside"
-	Axis Axis
-	Side bool  // false = Less, true = More
-}
-
-// func (r *LineRegion) All(m *Map) ([]Vector) {
-//}
-
-//func (r *LineRegion) Contains(location Vector, m *Map) (bool) {
-	
-//}
