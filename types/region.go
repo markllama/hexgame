@@ -50,12 +50,32 @@ func (region CircularRegion) All(m *Map) ([]Vector) {
 
 func (r CircularRegion) Contains(location Vector, m *Map) (bool) {
 	// if the location is within Radius hexes of Center
-	
-	return location.Distance(r.Center) <= r.Radius
+
+	return m.Contains(location) && location.Distance(r.Center) <= r.Radius
 }
 
+//
+//
+//
+
+type RectangularRegion struct {
+	Origin Vector
+	Size Vector
+}
+
+
+//
+//
+//
 type LineRegion struct {
 	// define a line and which side of the line is "inside"
 	Axis Axis
 	Side bool  // false = Less, true = More
 }
+
+// func (r *LineRegion) All(m *Map) ([]Vector) {
+//}
+
+//func (r *LineRegion) Contains(location Vector, m *Map) (bool) {
+	
+//}
