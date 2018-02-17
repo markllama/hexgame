@@ -11,7 +11,7 @@
     "hx": 0, 
     "hy": 0
   },
-  terrains: [
+  "terrains": [
     {
       "type": "basestar", "name": "Mosul",
       "locations": [ { "hx": 3, "hy": 2 } ]
