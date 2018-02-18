@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/markllama/hexgame/types"
+	"github.com/markllama/hexgame/types/hexmap"
 )
 
 type MapRef struct {
@@ -11,6 +11,6 @@ type MapRef struct {
 
 type Map struct {
 	Game string `json:"game,omitempty"`
-	types.Map `json:",inline"`
+	hexmap.Map `json:",inline"`
 	URL string `json:"url,omitempty"`
 }

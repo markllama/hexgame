@@ -1,8 +1,6 @@
-package api
+package hexmap
 
-import (
-	"github.com/markllama/hexgame/types/hexvector"
-)
+import "github.com/markllama/hexgame/types/hexvector"
 
 type Token struct {
 	Name string `json:"name"`

@@ -1,4 +1,6 @@
-package types
+package hexmap
+
+import "github.com/markllama/hexgame/types/hexvector"
 
 //
 // This class represents a set of hexes on a map.
@@ -6,12 +8,12 @@ package types
 
 
 type Region struct {
-	Origin Vector `bson:"origin"`
-	Size Vector `bson:"size"`
+	Origin hexvector.Vector `bson:"origin"`
+	Size hexvector.Vector `bson:"size"`
 }
 
 
-func (r Region) Contains(v Vector, m *Map) {
+func (r Region) Contains(v hexvector.Vector, m *Map) {
 	
 	
 	

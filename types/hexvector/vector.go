@@ -1,5 +1,5 @@
 
-package types
+package hexvector
 
 //import (
 //	"encoding/json"

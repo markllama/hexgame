@@ -1,11 +1,15 @@
-package types
+package hexmap
+
+import (
+	"github.com/markllama/hexgame/types/hexvector"
+)
 
 type Map struct {
 	Name string `json:"name"`
 	Copyright string `json:"copyright"`
 	Shape string `json:"shape"`
-	Size Vector `json:"size" bson:"size"`
-	Origin Vector `json:"origin" bson:"origin"`
+	Size hexvector.Vector `json:"size" bson:"size"`
+	Origin hexvector.Vector `json:"origin" bson:"origin"`
 	Terrains []Terrain `json:"terrains"`
 	Tokens []Token `json:"tokens,omitempty"`
 }
@@ -41,7 +45,7 @@ func (m *Map) Ybias(hx int) (int) {
 	return -((-hx + 1) / 2)
 }
 
-func (m *Map) Contains(v Vector) (bool) {
+func (m *Map) Contains(v hexvector.Vector) (bool) {
 
 	// Test if it's off the left or right side
 	if v.Hx < m.Origin.Hx || v.Hx >= m.Origin.Hx + m.Size.Hx {
