@@ -30,7 +30,7 @@ func (m0 *Map) Copy(m1 Map) {
 }
 
 
-func (m *Map) Ybias(hx int) (int) {
+func ybias(hx int) (int) {
 	// 0 -> 0
 	// 1 -> 0
 	// 2 -> 1
@@ -52,8 +52,8 @@ func (m *Map) Contains(v hexvector.Vector) (bool) {
 		return false
 	}
 	
-	ybias := m.Ybias(v.Hx)
-	if v.Hy < m.Origin.Hy + ybias || v.Hy >= m.Origin.Hy + m.Size.Hy + ybias {
+	bias := ybias(v.Hx)
+	if v.Hy < m.Origin.Hy + bias || v.Hy >= m.Origin.Hy + m.Size.Hy + bias {
 		return false
 	}
 	

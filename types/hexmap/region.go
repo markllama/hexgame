@@ -12,11 +12,19 @@ type Region struct {
 	Size hexvector.Vector `bson:"size"`
 }
 
+func (r *Region) Contains(v hexvector.Vector) (bool) {
 
-func (r Region) Contains(v hexvector.Vector, m *Map) {
+	// Test if it's off the left or right side
+	if v.Hx < r.Origin.Hx || v.Hx >= r.Origin.Hx + r.Size.Hx {
+		return false
+	}
 	
+	bias := ybias(v.Hx)
+	if v.Hy < r.Origin.Hy + bias || v.Hy >= r.Origin.Hy + r.Size.Hy + bias {
+		return false
+	}
 	
-	
+	return true
 }
 
 /*
