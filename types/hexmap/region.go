@@ -27,6 +27,18 @@ func (r *Region) Contains(v hexvector.Vector) (bool) {
 	return true
 }
 
+func (r *Region) All() (all []hexvector.Vector) {
+
+	for hx := r.Origin.Hx ; hx < r.Size.Hx ; hx++ {
+		for by := r.Origin.Hy ; by < r.Size.Hy ; by++ {
+			hy := by + ybias(hx)
+			all = append(all, hexvector.Vector{Hx: hx, Hy: hy})
+		}
+	}
+
+	return
+}
+
 /*
 type Region interface {
 	All() []Vector

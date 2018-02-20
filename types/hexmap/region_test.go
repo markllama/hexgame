@@ -2,45 +2,14 @@ package hexmap
 
 import (
 	"testing"
-	"fmt"
 
 	"github.com/markllama/hexgame/types/hexvector"
 )
 
 
+func TestRegionContains(t *testing.T) {
 
-func TestYBias(t *testing.T) {
-
-	values := [][]int{
-		{0, 0},
-		{1, 0},
-		{2, 1},
-		{3, 1},
-		{4, 2},
-		{5, 2},
-		{6, 3},
-
-		{-1, -1},
-		{-2, -1},
-		{-3, -2},
-		{-4, -2},
-	}
-	
-	var actual int
-
-	for _, v := range values {
-		actual = ybias(v[0])
-		if actual != v[1] {
-			t.Error(fmt.Sprintf("ybias fail: hx: %d, expected: %d, actual: %d",
-				v[0], v[1], actual))
-		}
-	}
-}
-
-
-func TestMapContains(t *testing.T) {
-
-	m0 := Map{
+	m0 := Region{
 		Origin: hexvector.ORIGIN,
 		Size: hexvector.Vector{Hx: 15, Hy: 21 },
 	}
@@ -75,4 +44,20 @@ func TestMapContains(t *testing.T) {
 			t.Error("hex", v, "is contained and should not be")
 		}
 	}
+}
+
+
+func TestRegionAll(t *testing.T) {
+
+	r := Region{
+		Origin: hexvector.ORIGIN,
+		Size: hexvector.Vector{Hx: 4, Hy: 4},
+	}
+
+	hexes := r.All()
+
+	if len(hexes) != 16 {
+		t.Error("Should be 16 hexes")
+	}
+
 }

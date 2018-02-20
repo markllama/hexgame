@@ -16,15 +16,15 @@ package main
 
 import (
 	"flag"
-	
+	"os"
 	"github.com/markllama/hexgame/server"
 )
 
 func main() {
 
-	js_dir := flag.String("js-dir", "./js", "the location of the Javascript code")
+	cwd, _ := os.Getwd()
+	content_root := flag.String("content-root", cwd + "/static",
+		"the location of the static content")
 
-	
-
-	server.Main(js_dir)
+	server.Main(content_root)
 }

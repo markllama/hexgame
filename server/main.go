@@ -42,7 +42,13 @@ func Main(code_root *string) {
 	// connect to database
 	session := Connect()
 
-	http.Handle("/js", http.FileServer(http.Dir(*code_root)))
+	http.Handle("/html/",
+		http.StripPrefix("/html/",
+			http.FileServer(http.Dir(*code_root + "/html"))))
+	
+	http.Handle("/js/",
+		http.StripPrefix("/js/",
+			http.FileServer(http.Dir(*code_root + "/js"))))
 	
 	http.HandleFunc("/game/", GameHandleFunc(session))
 	http.HandleFunc("/map/", MapHandleFunc(session))
