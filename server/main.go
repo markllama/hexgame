@@ -50,16 +50,10 @@ func Main(code_root *string) {
 		http.StripPrefix("/js/",
 			http.FileServer(http.Dir(*code_root + "/js"))))
 	
-	http.HandleFunc("/game/", GameHandleFunc(session))
-	http.HandleFunc("/map/", MapHandleFunc(session))
-
-	http.HandleFunc("/match/", MatchHandleFunc(session))
+	http.HandleFunc("/api/game/", GameHandleFunc(session))
+	http.HandleFunc("/api/map/", MapHandleFunc(session))
+	http.HandleFunc("/api/match/", MatchHandleFunc(session))
 	
-	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte("{\"foo\": \"bar\"}\n"))
-	})
-
 	http.HandleFunc("/quit", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Good Bye", html.EscapeString(r.URL.Path))
 		os.Exit(0)
