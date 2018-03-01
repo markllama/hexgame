@@ -1,5 +1,0 @@
-#!/bin/sh -e
-
-[ -d bin ] || mkdir -p bin
-
-go build -o bin/hexgame-server github.com/markllama/hexgame/cmd/hexgame-server

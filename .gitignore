@@ -1,3 +1,4 @@
+hexgame
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
@@ -28,3 +29,5 @@ _testmain.go
 
 # go binary artifacts
 bin
+glide.*
+vendor
