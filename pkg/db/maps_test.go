@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 	//"encode/json"
-	"gpkg.in/mgo.v2"
-	"gpkg.in/mgo.v2/bson"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 
