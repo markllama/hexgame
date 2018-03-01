@@ -1,12 +1,241 @@
 db = db.getSiblingDB('hexgame')
 if (db.games.find({"name": "warpwar"}).count() == 0) {
+  game_id = ObjectId()
   db.games.insert(
 	  {
+      _id: game_id,
 		  name: "warpwar",
 		  title: "Warp War",
 		  author: "Howard Thompson",
 		  copyright: "1977 Metagaming",
 		  description: "MicroGame 4: Warp War"
 	  }
+  )
+
+  map_id = ObjectId()
+  db.maps.insert(
+    {
+      _id: map_id,
+      game_id: game_id,
+      "name": "warpwar",
+      "copyright": "(C) 1977 Metagaming", 
+      "shape": "rectangle", 
+      "size": {
+        "hx": 15, 
+        "hy": 22
+      },
+      "origin": {
+        "hx": 0, 
+        "hy": 0
+      },
+      "terrains": [
+        {
+          "type": "basestar", "name": "Mosul",
+          "locations": [ { "hx": 3, "hy": 2 } ]
+        }, 
+        {
+          "type": "basestar", "name": "Ur", 
+          "locations": [ { "hx": 7, "hy": 5 } ]
+        }, 
+        {
+          "type": "basestar", "name": "Larsu", 
+          "locations": [ { "hx": 11, "hy": 7 } ]
+        }, 
+        {
+          "type": "basestar", "name": "Ninevah", 
+          "locations": [ { "hx": 3, "hy": 20 } ]
+        }, 
+        {
+          "type": "basestar", "name": "Babylon", 
+          "locations": [ { "hx": 6, "hy": 21 } ]
+        }, 
+        {
+          "type": "basestar", "name": "Ugarit", 
+          "locations": [ { "hx": 11, "hy": 25 } ]
+        }, 
+        {
+          "type": "star", "name": "Sippur", 
+          "locations": [ { "hx": 2, "hy": 5 } ]
+        }, 
+        {
+          "type": "star", "name": "Erech", 
+          "locations": [ { "hx": 4, "hy": 6 } ]
+        }, 
+        { "type": "star", "name": "Calah", 
+          "locations": [ { "hx": 8, "hy": 8 } ]
+        }, 
+        {
+          "type": "star", "name": "Susa",
+          "locations": [ { "hx": 12, "hy": 11 } ]
+        }, 
+        {
+          "type": "star", "name": "Byblos", 
+          "locations": [ { "hx": 2, "hy": 7 } ]
+        }, 
+        {
+          "type": "star", "name": "Adab", 
+          "locations": [ { "hx": 6, "hy": 9 } ]
+        }, 
+        {
+          "type": "star", "name": "Nippur", 
+          "locations": [ { "hx": 10, "hy": 12 } ]
+        }, 
+        {
+          "type": "star", "name": "Ubaid", 
+          "locations": [ { "hx": 3, "hy": 9 } ]
+        }, 
+        {
+          "type": "star", "name": "Khafa", 
+          "locations": [ { "hx": 7, "hy": 12 } ]
+        }, 
+        {
+          "type": "star", "name": "Mari", 
+          "locations": [ { "hx": 6, "hy": 13 } ]
+        }, 
+        {
+          "type": "star", "name": "Lagash", 
+          "locations": [ { "hx": 9, "hy": 15 } ]
+        }, 
+        {
+          "type": "star", "name": "Assur", 
+          "locations": [ { "hx": 12, "hy": 16 } ]
+        }, 
+        {
+          "type": "star", "name": "Elam", 
+          "locations": [ { "hx": 7, "hy": 15 } ]
+        }, 
+        {
+          "type": "star", "name": "Jarmo", 
+          "locations": [ { "hx": 11, "hy": 17 } ]
+        }, 
+        {
+          "type": "star", "name": "Sumarra", 
+          "locations": [ { "hx": 2, "hy": 13 } ]
+        }, 
+        {
+          "type": "star", "name": "Umma", 
+          "locations": [ { "hx": 5, "hy": 16 } ]
+        }, 
+        {
+          "type": "star", "name": "Girsu", 
+          "locations": [ { "hx": 8, "hy": 17 } ]
+        }, 
+        {
+          "type": "star", "name": "Isin", 
+          "locations": [ { "hx": 1, "hy": 15 } ]
+        }, 
+        {
+          "type": "star", "name": "Sumer", 
+          "locations": [ { "hx": 4, "hy": 18 } ]
+        }, 
+        {
+          "type": "star", "name": "Akkad", 
+          "locations": [ { "hx": 7, "hy": 19 } ]
+        }, 
+        {
+          "type": "star", "name": "Kish", 
+          "locations": [ { "hx": 10, "hy": 20 } ]
+        }, 
+        {
+          "type": "star", "name": "Eridu", 
+          "locations": [ { "hx": 12, "hy": 22 } ]
+        }, 
+        {
+          "type": "warpline", "name": "mosul2sippur", 
+          "locations": [ { "hx": 3, "hy": 2 }, { "hx": 2, "hy": 5 } ]
+        }, 
+        {
+          "type": "warpline", "name": "ur2erech", 
+          "locations": [ { "hx": 7, "hy": 5 }, { "hx": 4, "hy": 6 } ]
+        }, 
+        {
+          "type": "warpline", "name": "erech2adab", 
+          "locations": [ { "hx": 4, "hy": 6 }, { "hx": 6, "hy": 9 } ]
+        }, 
+        {
+          "type": "warpline", "name": "adab2byblos", 
+          "locations": [ { "hx": 6, "hy": 9 }, { "hx": 2, "hy": 7 } ]
+        }, 
+        {
+          "type": "warpline", "name": "adab2khafa", 
+          "locations": [ { "hx": 6, "hy": 9 }, { "hx": 7, "hy": 12 } ]
+        }, 
+        {
+          "type": "warpline", "name": "larsu2susa", 
+          "locations": [ { "hx": 11, "hy": 7 }, { "hx": 12, "hy": 11 } ]
+        }, 
+        {
+          "type": "warpline", "name": "susa2nippur", 
+          "locations": [ { "hx": 12, "hy": 11 }, { "hx": 10, "hy": 12 } ]
+        }, 
+        {
+          "type": "warpline", "name": "calah2nippur", 
+          "locations": [ { "hx": 8, "hy": 8 }, { "hx": 10, "hy": 12 } ]
+        }, 
+        {
+          "type": "warpline", "name": "nippur2lagash", 
+          "locations": [ { "hx": 10, "hy": 12 }, { "hx": 9, "hy": 15 } ]
+        }, 
+        {
+          "type": "warpline", "name": "nippur2assur", 
+          "locations": [ { "hx": 10, "hy": 12 }, { "hx": 12, "hy": 16 } ]
+        }, 
+        {
+          "type": "warpline", "name": "lagash2assur", 
+          "locations": [ { "hx": 9, "hy": 15 }, { "hx": 12, "hy": 16 } ]
+        }, 
+        {
+          "type": "warpline", "name": "lagash2elam", 
+          "locations": [ { "hx": 9, "hy": 15 }, { "hx": 7, "hy": 15 } ]
+        }, 
+        {
+          "type": "warpline", "name": "ubaid2mari", 
+          "locations": [ { "hx": 3, "hy": 9 }, { "hx": 6, "hy": 13 } ]
+        }, 
+        {
+          "type": "warpline", "name": "ubaid2sumarra", 
+          "locations": [ { "hx": 3, "hy": 9 }, { "hx": 2, "hy": 13 } ]
+        }, 
+        {
+          "type": "warpline", "name": "mari2umma", 
+          "locations": [ { "hx": 6, "hy": 13 }, { "hx": 5, "hy": 16 } ]
+        }, 
+        {
+          "type": "warpline", "name": "sumarra2umma", 
+          "locations": [ { "hx": 2, "hy": 13 }, { "hx": 5, "hy": 16 } ]
+        }, 
+        {
+          "type": "warpline", "name": "umma2girsu", 
+          "locations": [ { "hx": 5, "hy": 16 }, { "hx": 8, "hy": 17 } ]
+        }, 
+        { "type": "warpline", "name": "umma2sumer", 
+          "locations": [ { "hx": 5, "hy": 16 }, { "hx": 4, "hy": 18 } ]
+        }, 
+        {
+          "type": "warpline", "name": "sumer2babylon", 
+          "locations": [ { "hx": 4, "hy": 18 }, { "hx": 6, "hy": 21 } ]
+        }, 
+        {
+          "type": "warpline", "name": "jarmo2kish", 
+          "locations": [ { "hx": 11, "hy": 17 }, { "hx": 10, "hy": 20 } ]
+        }, 
+        {
+          "type": "warpline", "name": "kish2akkid", 
+          "locations": [ { "hx": 10, "hy": 20 }, { "hx": 7, "hy": 19 } ]
+        }, 
+        {
+          "type": "warpline", "name": "kish2eridu", 
+          "locations": [ { "hx": 10, "hy": 20 }, { "hx": 12, "hy": 12 } ]
+        }, 
+        {
+          "type": "warpline", "name": "eridu2ugarit", 
+          "locations": [ { "hx": 12, "hy": 12 }, { "hx": 11, "hy": 25 } ]
+        }, 
+        {
+          "type": "warpline", "name": "isin2nineveh", 
+          "locations": [ { "hx": 1, "hy": 15 }, { "hx": 3, "hy": 20 } ]
+        }
+      ]
+    }
   )
 }

@@ -1,0 +1,15 @@
+db = db.getSiblingDB('hexgame')
+if (db.matches.find().count() == 0) {
+  db.matches.insert(
+    [
+      {
+        "owner_id": "",
+        "game_id": "",
+        "create_time": "",
+        "start_time": "",
+        "players": [],
+        "map_id": ""
+      },
+    ]
+  )
+}

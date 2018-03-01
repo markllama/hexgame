@@ -1,6 +1,10 @@
 package hexmap
 
+import "github.com/markllama/hexgame/types/hexvector"
+
 type Terrain struct {
-	Name string         `json:"name"`
-	Locations []Vector  `json:"locations"`
+	Type string         `json:"type"`
+	Name string         `json:"name,omitempty"`
+	Locations []hexvector.Vector  `json:"locations,omitempty"`
+	Regions []Region  `json:"regions,omitempty"`
 }

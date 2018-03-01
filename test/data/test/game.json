@@ -1,12 +1,40 @@
 db = db.getSiblingDB('hexgame')
 if (db.games.find({"name": "test"}).count() == 0) {
+  game_id = ObjectId()
   db.games.insert(
     {
+      _id: game_id,
 	    name: "test",
 	    title: "Test Game",
 	    author: "Mark Lamourine",
 	    copyright: "CC-3.0",
 	    description: "A testmap game for testing and demonstration"
+    }
+  )
+
+  map_id = ObjectId()
+  db.maps.insert(
+    {
+      _id: map_id,
+	    "game_id": game_id,
+	    "name": "test",
+	    "copyright": "CC-4.0",
+      "shape": "rectangle", 
+      "size": {
+        "hx": 15, 
+        "hy": 22
+      },
+      "origin": {
+        "hx": 0, 
+        "hy": 0
+      }, 
+      "terrains": [
+        {"name": "bush",
+         "locations": [
+           {"hx": 3, "hy": 3} 
+         ]
+        }
+      ]
     }
   )
 }

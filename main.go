@@ -14,8 +14,17 @@
 
 package main
 
-import "github.com/markllama/hexgame/server"
+import (
+	"flag"
+	"os"
+	"github.com/markllama/hexgame/server"
+)
 
 func main() {
-	server.Main()
+
+	cwd, _ := os.Getwd()
+	content_root := flag.String("content-root", cwd + "/static",
+		"the location of the static content")
+
+	server.Main(content_root)
 }
