@@ -9,7 +9,7 @@ func TestConstructors(t *testing.T) {
 	v := Vector{4, 1}
 
 	if v.Hx != 4 {
-		t.Error("v.Hx: expected 4, actual: " + fmt.Sprintf("d", v.Hx))
+		t.Error("v.Hx: expected 4, actual: " + fmt.Sprintf("%d", v.Hx))
 	}
 	if v.Hy != 1 {
 		t.Error("v.Hy: expected 1, actual: " + fmt.Sprintf("%d", v.Hy))

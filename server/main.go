@@ -55,7 +55,7 @@ func Main(code_root *string) {
 	http.HandleFunc("/api/match/", MatchHandleFunc(session))
 	
 	http.HandleFunc("/quit", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Good Bye", html.EscapeString(r.URL.Path))
+		fmt.Fprintf(w, "Good Bye: %s", html.EscapeString(r.URL.Path))
 		os.Exit(0)
 	})
 	
