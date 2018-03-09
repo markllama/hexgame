@@ -16,15 +16,56 @@ package main
 
 import (
 	"flag"
-	"os"
-	"github.com/markllama/hexgame/server"
+//	"os"
+	server "github.com/markllama/hexgame/server"
 )
+
+func processFlags() *server.Options {
+
+	var opts server.Options
+
+	flag.StringVar(&opts.ConfigFile, "config-file", "hexgame-config.json",
+		"The location of the hexgame server configuration file")
+	
+	flag.StringVar(&opts.DbServer, "dbserver", "localhost",
+		"The hostname or IP address of a mongodb server holding the game database")
+
+	flag.IntVar(&opts.DbPort, "dbport", 27017,
+		"The TCP port of the hexgame database")
+
+	flag.StringVar(&opts.DbName, "dbname", "hexgame",
+		"The name of the hexgame database")
+
+	flag.StringVar(&opts.DbUser, "dbuser", "hexgame",
+		"The access user for the hexgame database")
+
+	flag.StringVar(&opts.DbPassword, "dbpass", "hexgame",
+		"The access password for the hexgame database")
+
+	flag.StringVar(&opts.ContentRoot, "content-root", "./static",
+		"The location of the static content for the game server")
+
+	flag.BoolVar(&opts.Debug, "debug", false,
+		"write debugging information")
+
+	flag.BoolVar(&opts.Verbose, "verbose", false,
+		"write verbose progress information")
+	
+	flag.Parse()
+	return &opts
+}
+
+//func mergeEnvironment() {
+//
+//}
 
 func main() {
 
-	cwd, _ := os.Getwd()
-	content_root := flag.String("content-root", cwd + "/static",
-		"the location of the static content")
+	//cwd, _ := os.Getwd()
+	//content_root := flag.String("content-root", cwd + "/static",
+	//	"the location of the static content")
 
-	server.Main(content_root)
+	opts := processFlags()
+	
+	server.Main(opts)
 }

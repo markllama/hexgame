@@ -5,32 +5,6 @@ FORMAT: 1A
 Hexgame is a protocol allowing users to create and play games based on 
 hex boards.
 
-# Group Games
-
-## Game Collection [/games]
-
-# Group Matches
-
-## Match Collection [/matches]
-
-
-### List All Matches [GET]
-    
-    + Response 200 (application/json)
-
-### Create a New Match [POST]
-
-    + Response 201 (application/json)
-      + Headers
-        Location: /matches/1
-    
-## Match [/matches/{match_id}]
-
-### Get a Match [GET]
-
-    + Response 200 (application/json)
-    
-    
 # Group Users
 
 ## User Collection [/users]
@@ -54,3 +28,46 @@ hex boards.
 ### Update a User [PUT]
 
     + Response 
+
+# Group Games
+
+## Game Collection [/games]
+
+# Group Maps
+
+## Map Collection [/maps]
+
+### List All Maps [GET]
+
+### Create A New Map [POST]
+
+## A Single Map [/maps/{map_id}]
+
+### Get a Specific Map [GET]
+
+### Update a Map [PUT]
+
+    + Response 204 (application/json)
+
+# Group Matches
+
+## Match Collection [/matches]
+
+
+### List All Matches [GET]
+    
+    + Response 200 (application/json)
+
+### Create a New Match [POST]
+
+    + Response 201 (application/json)
+      + Headers
+        Location: /matches/1
+    
+## Match [/matches/{match_id}]
+
+### Get a Match [GET]
+
+    + Response 200 (application/json)
+    
+    

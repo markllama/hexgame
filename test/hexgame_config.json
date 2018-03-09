@@ -1,0 +1,10 @@
+{
+  "content-root": "/home/mark/dev/hexgame/static",
+  "db-config": {
+    "server": "localhost",
+    "port": 271017,
+    "database": "hexgame",
+    "username": "hexgame",
+    "password": "ragnar"
+  }
+}

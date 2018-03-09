@@ -4,6 +4,7 @@ import (
 	"time"
 	"os"
 	"fmt"
+	"strconv"
 	"html"
 	"log"
 	"net/http"
@@ -11,22 +12,79 @@ import (
 	//"github.com/markllama/hexgame/server/handler"
 )
 
+type Options struct {
+
+	ConfigFile string
+	
+	DbServer string
+	DbPort int
+	DbName string
+	DbUser string
+	DbPassword string
+
+	ContentRoot string
+
+	Debug bool
+	Verbose bool
+}
 
 //const MongoDb details
-const (
-	hosts      = "127.0.0.1:27017"
-	database   = "hexgame"
-	username   = "hexgame"
-	password   = "ragnar"
-)
+var Defaults = Options{
+	ConfigFile: "./hexgame_config.yaml",
+	DbServer: "127.0.0.1",
+	DbPort: 27017,
+	DbName: "hexgame",
+	DbUser: "hexgame",
+	ContentRoot: "./static",
 
-func Connect() (*mgo.Session) {
+	Debug: false,
+	Verbose: false,
+}
+
+func Environment() (opts *Options) {
+
+	config_file := os.Getenv("HEXGAME_CONFIG_FILE")
+	if len(config_file) > 0 {
+		opts.ConfigFile = config_file
+	}
+	
+	server := os.Getenv("HEXGAME_SERVER")
+	if len(server) > 0 {
+		opts.DbServer = server
+	}
+
+	port_str := os.Getenv("HEXGAME_PORT")
+	if len(port_str) > 0 {
+		port, err := strconv.Atoi(port_str)
+		if err == nil {
+			opts.DbPort = port
+		}
+	}
+
+	user := os.Getenv("HEXGAME_USER")
+	if len(user) > 0 {
+		opts.DbUser = user
+	}
+
+	content_root := os.Getenv("HEXGAME_CONTENT_ROOT")
+	if len(content_root) > 0 {
+		opts.ContentRoot = content_root
+	}
+
+	return
+}
+
+func Connect(opts *Options) (*mgo.Session) {
+
+	host_port := opts.DbServer + ":" + strconv.Itoa(opts.DbPort)
+	
 	info := &mgo.DialInfo{
-		Addrs:    []string{hosts},
+		
+		Addrs:    []string{host_port},
 		Timeout:  60 * time.Second,
-		Database: database,
-		Username: username,
-		Password: password,
+		Database: opts.DbName,
+		Username: opts.DbUser,
+		Password: opts.DbPassword,
 	}
 
 	session, err := mgo.DialWithInfo(info)
@@ -37,18 +95,18 @@ func Connect() (*mgo.Session) {
 	return session
 }
 
-func Main(code_root *string) {
+func Main(opts *Options) {
 
 	// connect to database
-	session := Connect()
+	session := Connect(opts)
 
 	http.Handle("/html/",
 		http.StripPrefix("/html/",
-			http.FileServer(http.Dir(*code_root + "/html"))))
+			http.FileServer(http.Dir(opts.ContentRoot + "/html"))))
 	
 	http.Handle("/js/",
 		http.StripPrefix("/js/",
-			http.FileServer(http.Dir(*code_root + "/js"))))
+			http.FileServer(http.Dir(opts.ContentRoot + "/js"))))
 	
 	http.HandleFunc("/api/game/", GameHandleFunc(session))
 	http.HandleFunc("/api/map/", MapHandleFunc(session))
