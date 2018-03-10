@@ -11,12 +11,12 @@ func TestLoad(t *testing.T) {
 
 	config := LoadConfig(test_config_file)
 
-	expected := struct {
-		DbServer string
-		DbPort int
-	}{
+	expected := MongoDBConfig{
 		DbServer: "localhost",
 		DbPort: 27017,
+		DbName: "hexgame",
+		DbUser: "hexgame",
+		DbPassword: "ragnar",
 	}
 	
 	if config.DbServer != expected.DbServer {
@@ -32,4 +32,26 @@ func TestLoad(t *testing.T) {
 				expected.DbPort,
 				config.DbPort))
 	}
+
+	if config.DbName != expected.DbName {
+		t.Error(
+			fmt.Sprintf("DbName does not match: expected = %s, actual %s",
+				expected.DbName,
+				config.DbName))
+	}
+
+	if config.DbUser != expected.DbUser {
+		t.Error(
+			fmt.Sprintf("DbUser does not match: expected = %s, actual %s",
+				expected.DbUser,
+				config.DbUser))
+	}
+
+	if config.DbPassword != expected.DbPassword {
+		t.Error(
+			fmt.Sprintf("DbPassword does not match: expected = %s, actual %s",
+				expected.DbPassword,
+				config.DbPassword))
+	}
+
 }
