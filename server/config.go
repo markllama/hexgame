@@ -58,7 +58,11 @@ func processEnv() *HexGameOptions {
 	env.DbServer = os.Getenv("HEXGAME_DBSERVER")
 	port_string := os.Getenv("HEXGAME_DBPORT")
 	if len(port_string) > 0 {
-		env.DbPort, _ = strconv.Atoi(port_string)
+		var err error
+		env.DbPort, err = strconv.Atoi(port_string)
+		if err != nil {
+			fmt.Printf("error parsing DB port string '%s': %s\n", port_string, err)
+		}
 	}
 	env.DbName = os.Getenv("HEXGAME_DBNAME")
 	env.DbUser = os.Getenv("HEXGAME_DBUSER")
@@ -132,7 +136,3 @@ func loadConfig(filename string) (*HexGameConfig) {
 
 	return &config
 }
-
-
-
-

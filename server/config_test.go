@@ -5,6 +5,7 @@ import (
 
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func TestLoad(t *testing.T) {
@@ -80,10 +81,13 @@ func TestEnv(t *testing.T) {
 	os.Setenv("HEXGAME_CONTENT_ROOT", expected.ContentRoot)
 	
 	os.Setenv("HEXGAME_DBSERVER", expected.DbServer)
-	os.Setenv("HEXGAME_DBPORT", string(expected.DbPort))
+	os.Setenv("HEXGAME_DBPORT", strconv.Itoa(expected.DbPort))
 	os.Setenv("HEXGAME_DBNAME", expected.DbName)
 	os.Setenv("HEXGAME_DBUSER", expected.DbUser)
 	os.Setenv("HEXGAME_DBPASS", expected.DbPassword)
+
+	os.Setenv("HEXGAME_VERBOSE", strconv.FormatBool(expected.Verbose))
+	os.Setenv("HEXGAME_DEBUG", strconv.FormatBool(expected.Debug))
 	
 // 	// prepare for the test
 
@@ -103,6 +107,63 @@ func TestEnv(t *testing.T) {
 				"wrong content root string: expected: %s, actual %s",
 				expected.ContentRoot,
 				actual.ContentRoot))
+	}
+
+	if actual.DbServer != expected.DbServer {
+		t.Error(
+			fmt.Sprintf(
+				"wrong db server: expected: %s, actual %s",
+				expected.DbServer,
+				actual.DbServer))
+	}
+
+	if actual.DbPort != expected.DbPort {
+		t.Error(
+			fmt.Sprintf(
+				"wrong db port: expected: %d, actual %d",
+				expected.DbPort,
+				actual.DbPort))
+	}
+
+	if actual.DbName != expected.DbName {
+		t.Error(
+			fmt.Sprintf(
+				"wrong db name: expected: %s, actual %s",
+				expected.DbName,
+				actual.DbName))
+	}
+
+	if actual.DbUser != expected.DbUser {
+		t.Error(
+			fmt.Sprintf(
+				"wrong db user: expected: %s, actual %s",
+				expected.DbUser,
+				actual.DbUser))
+	}
+
+	if actual.DbPassword != expected.DbPassword {
+		t.Error(
+			fmt.Sprintf(
+				"wrong db password: expected: %s, actual %s",
+				expected.DbPassword,
+				actual.DbPassword))
+	}
+
+
+	if actual.Verbose != expected.Verbose {
+		t.Error(
+			fmt.Sprintf(
+				"wrong verbose flag: expected: %s, actual %s",
+				expected.Verbose,
+				actual.Verbose))
+	}
+	
+	if actual.Debug != expected.Debug {
+		t.Error(
+			fmt.Sprintf(
+				"wrong debug flag: expected: %s, actual %s",
+				expected.Debug,
+				actual.Debug))
 	}
 
 }
