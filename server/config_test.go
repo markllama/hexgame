@@ -2,14 +2,16 @@ package server
 
 import (
 	"testing"
+
 	"fmt"
+	"os"
 )
 
 func TestLoad(t *testing.T) {
 
 	test_config_file := "../test/hexgame_config.json"
 
-	config := LoadConfig(test_config_file)
+	config := loadConfig(test_config_file)
 
 	expected := MongoDBConfig{
 		DbServer: "localhost",
@@ -54,4 +56,27 @@ func TestLoad(t *testing.T) {
 				config.DbPassword))
 	}
 
+}
+
+func TestEnv(t *testing.T) {
+
+	expected := HexGameOptions{
+		HexGameConfig: HexGameConfig{
+			ConfigFile: "a file name",
+		},
+	}
+	
+	os.Setenv("HEXGAME_CONFIG_FILE", expected.ConfigFile)
+	
+// 	// prepare for the test
+
+	actual := processEnv()
+
+	if actual.ConfigFile != expected.ConfigFile {
+		t.Error(
+			fmt.Sprintf(
+				"wrong config file string: expected: %s, actual %s",
+				expected.ConfigFile,
+				actual.ConfigFile))
+	}
 }
