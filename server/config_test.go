@@ -63,10 +63,27 @@ func TestEnv(t *testing.T) {
 	expected := HexGameOptions{
 		HexGameConfig: HexGameConfig{
 			ConfigFile: "a file name",
+			ContentRoot: "where to put it",
+			MongoDBConfig: MongoDBConfig{
+				DbServer: "aserver",
+				DbPort: 12345,
+				DbName: "database",
+				DbUser: "menotyou",
+				DbPassword: "ssshdonttell",
+			},
 		},
+		Verbose: true,
+		Debug: false,
 	}
 	
 	os.Setenv("HEXGAME_CONFIG_FILE", expected.ConfigFile)
+	os.Setenv("HEXGAME_CONTENT_ROOT", expected.ContentRoot)
+	
+	os.Setenv("HEXGAME_DBSERVER", expected.DbServer)
+	os.Setenv("HEXGAME_DBPORT", string(expected.DbPort))
+	os.Setenv("HEXGAME_DBNAME", expected.DbName)
+	os.Setenv("HEXGAME_DBUSER", expected.DbUser)
+	os.Setenv("HEXGAME_DBPASS", expected.DbPassword)
 	
 // 	// prepare for the test
 
@@ -79,4 +96,13 @@ func TestEnv(t *testing.T) {
 				expected.ConfigFile,
 				actual.ConfigFile))
 	}
+
+	if actual.ContentRoot != expected.ContentRoot {
+		t.Error(
+			fmt.Sprintf(
+				"wrong content root string: expected: %s, actual %s",
+				expected.ContentRoot,
+				actual.ContentRoot))
+	}
+
 }

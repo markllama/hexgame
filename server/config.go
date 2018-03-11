@@ -53,6 +53,7 @@ func processEnv() *HexGameOptions {
 	var env HexGameOptions
 
 	env.ConfigFile = os.Getenv("HEXGAME_CONFIG_FILE")
+	env.ContentRoot = os.Getenv("HEXGAME_CONTENT_ROOT")
 
 	env.DbServer = os.Getenv("HEXGAME_DBSERVER")
 	port_string := os.Getenv("HEXGAME_DBPORT")
