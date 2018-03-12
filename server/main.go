@@ -74,7 +74,7 @@ func Environment() (opts *Options) {
 	return
 }
 
-func Connect(opts *Options) (*mgo.Session) {
+func Connect(opts *MongoDBConfig) (*mgo.Session) {
 
 	host_port := opts.DbServer + ":" + strconv.Itoa(opts.DbPort)
 	
@@ -95,10 +95,10 @@ func Connect(opts *Options) (*mgo.Session) {
 	return session
 }
 
-func Main(opts *Options) {
+func Main(opts *HexGameConfig) {
 
 	// connect to database
-	session := Connect(opts)
+	session := Connect(&opts.MongoDBConfig)
 
 	http.Handle("/html/",
 		http.StripPrefix("/html/",

@@ -31,19 +31,27 @@ type HexGameOptions struct {
 }
 
 var dbDefaults = MongoDBConfig{
-	DbServer: "localhost",	
+	DbServer: "localhost",
+	DbPort: 27017,
+	DbName: "hexgame",
+	DbUser: "hexgame",
 }
 
 var defaults = HexGameConfig{
 	ConfigFile: "hexgame.json",
 	ContentRoot: "static",
+	MongoDBConfig: dbDefaults,
 }
 
 func GetConfig() *HexGameConfig {
 
-	// read the CLI: Need to get the config file if provided
+	// retrieve config information from all three sources:
+//	env := processEnv()
 	cli := processFlags()
 	config := loadConfig(cli.ConfigFile)
+
+	// merge the inputs:
+	// Precedence: cli > env > config > default
 	
 	return config
 }
