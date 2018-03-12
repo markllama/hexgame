@@ -153,7 +153,7 @@ func TestEnv(t *testing.T) {
 	if actual.Verbose != expected.Verbose {
 		t.Error(
 			fmt.Sprintf(
-				"wrong verbose flag: expected: %s, actual %s",
+				"wrong verbose flag: expected: %v, actual %v",
 				expected.Verbose,
 				actual.Verbose))
 	}
@@ -161,7 +161,7 @@ func TestEnv(t *testing.T) {
 	if actual.Debug != expected.Debug {
 		t.Error(
 			fmt.Sprintf(
-				"wrong debug flag: expected: %s, actual %s",
+				"wrong debug flag: expected: %v, actual %v",
 				expected.Debug,
 				actual.Debug))
 	}
