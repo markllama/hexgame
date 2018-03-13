@@ -43,6 +43,13 @@ var defaults = HexGameConfig{
 	MongoDBConfig: dbDefaults,
 }
 
+// merge two configurations.  The first one takes precence. Only
+// copy a value from c2 to c1 if the detination is nil.
+func MergeConfigs(c1 *HexGameConfig, c2 *HexGameConfig) *HexGameConfig {
+
+	return c1
+}
+
 func GetConfig() *HexGameConfig {
 
 	// retrieve config information from all three sources:
@@ -52,9 +59,13 @@ func GetConfig() *HexGameConfig {
 
 	// merge the inputs:
 	// Precedence: cli > env > config > default
+
+	
+	
 	
 	return config
 }
+
 
 func processEnv() *HexGameOptions {
 
