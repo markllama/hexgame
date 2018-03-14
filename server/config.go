@@ -19,12 +19,12 @@ type MongoDBConfig struct {
 }
 
 type  HexGameConfig struct {
-	ConfigFile string `json:"-"`
 	ContentRoot string `json:"content-root"`
 	MongoDBConfig `json:"db-config,inline"`
 }
 
 type HexGameOptions struct {
+	ConfigFile string
 	HexGameConfig
 	Verbose bool
 	Debug bool
@@ -38,7 +38,6 @@ var dbDefaults = MongoDBConfig{
 }
 
 var defaults = HexGameConfig{
-	ConfigFile: "hexgame.json",
 	ContentRoot: "static",
 	MongoDBConfig: dbDefaults,
 }

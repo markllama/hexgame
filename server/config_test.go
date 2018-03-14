@@ -63,7 +63,6 @@ func TestEnv(t *testing.T) {
 
 	expected := HexGameOptions{
 		HexGameConfig: HexGameConfig{
-			ConfigFile: "a file name",
 			ContentRoot: "where to put it",
 			MongoDBConfig: MongoDBConfig{
 				DbServer: "aserver",
@@ -187,7 +186,6 @@ func TestMergeConfig(t *testing.T) {
 	//}
 
 	input := HexGameConfig{
-		ConfigFile: "configfile",
 		ContentRoot: "location",
 		MongoDBConfig: MongoDBConfig{
 			DbServer: "servername",
