@@ -167,3 +167,60 @@ func TestEnv(t *testing.T) {
 	}
 
 }
+
+func TestMergeConfig(t *testing.T) {
+
+	empty := HexGameOptions{}
+
+	// var full :=	HexGameConfig: HexGameConfig{
+	// 	ConfigFile: "a file name",
+	// 	ContentRoot: "where to put it",
+	// 	MongoDBConfig: MongoDBConfig{
+	// 		DbServer: "aserver",
+	// 		DbPort: 12345,
+	// 		DbName: "database",
+	// 		DbUser: "menotyou",
+	// 		DbPassword: "ssshdonttell",
+	// 	},
+	// 	Verbose: true,
+	// 	Debug: false,
+	//}
+
+	input := HexGameOptions{
+		HexGameConfig: HexGameConfig{
+			ContentRoot: "location",
+			MongoDBConfig: MongoDBConfig{
+				DbServer: "servername",
+				DbPort: 23456,
+				DbName: "dbname",
+				DbUser: "dbuser",
+				DbPassword: "password",
+			},
+		},
+	}
+
+	output := MergeConfigs(&empty, &empty)
+
+	if output.ContentRoot != empty.ContentRoot {
+		t.Error(fmt.Sprintf("empty merge failed: expected: %s, actual: %s",
+			empty.HexGameConfig.ContentRoot,
+			output.HexGameConfig.ContentRoot))
+	}
+
+	output = MergeConfigs(&input, &empty)
+
+	if output.ContentRoot != input.ContentRoot {
+		t.Error(fmt.Sprintf("merge failed: expected: %s, actual: %s",
+			input.HexGameConfig.ContentRoot,
+			output.HexGameConfig.ContentRoot))
+	}
+
+	output = MergeConfigs(&empty, &input)
+
+	if output.ContentRoot != input.ContentRoot {
+		t.Error(fmt.Sprintf("merge failed: expected: %s, actual: %s",
+			input.HexGameConfig.ContentRoot,
+			output.HexGameConfig.ContentRoot))
+	}
+
+}

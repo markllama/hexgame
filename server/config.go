@@ -45,9 +45,21 @@ var defaults = HexGameConfig{
 
 // merge two configurations.  The first one takes precence. Only
 // copy a value from c2 to c1 if the detination is nil.
-func MergeConfigs(c1 *HexGameConfig, c2 *HexGameConfig) *HexGameConfig {
+func MergeConfigs(c0 *HexGameOptions, c1 *HexGameOptions) *HexGameOptions {
 
-	return c1
+	if c0.ContentRoot == "" && c1.ContentRoot != "" {
+		c0.ContentRoot = c1.ContentRoot
+	}
+
+	if c0.DbServer == "" && c1.DbServer != "" {
+		c0.DbServer = c1.DbServer
+	}
+
+	if c0.DbPort == 0 && c1.DbPort != 0 {
+		c0.DbPort = c1.DbPort
+	}
+
+	return c0
 }
 
 func GetConfig() *HexGameConfig {
