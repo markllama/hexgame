@@ -20,6 +20,7 @@ type MongoDBConfig struct {
 
 type  HexGameConfig struct {
 	ContentRoot string `json:"content-root"`
+	Port int `json:"port"`
 	MongoDBConfig `json:"db-config,inline"`
 }
 
@@ -37,9 +38,13 @@ var dbDefaults = MongoDBConfig{
 	DbUser: "hexgame",
 }
 
-var defaults = HexGameConfig{
-	ContentRoot: "static",
-	MongoDBConfig: dbDefaults,
+var defaults = HexGameOptions{
+	ConfigFile: "/var/lib/hexgame/config.json",
+	HexGameConfig: HexGameConfig{
+		ContentRoot: "static",
+		Port: 3000,
+		MongoDBConfig: dbDefaults,
+	},
 }
 
 // merge two configurations.  The first one takes precence. Only
@@ -48,6 +53,10 @@ func MergeConfigs(c0 *HexGameConfig, c1 *HexGameConfig) *HexGameConfig {
 
 	if c0.ContentRoot == "" && c1.ContentRoot != "" {
 		c0.ContentRoot = c1.ContentRoot
+	}
+
+	if c0.Port == 0 && c1.Port != 0 {
+		c0.Port = c1.Port
 	}
 
 	if c0.DbServer == "" && c1.DbServer != "" {
@@ -76,15 +85,28 @@ func MergeConfigs(c0 *HexGameConfig, c1 *HexGameConfig) *HexGameConfig {
 func GetConfig() *HexGameConfig {
 
 	// retrieve config information from all three sources:
-//	env := processEnv()
 	cli := processFlags()
-	config := loadConfig(cli.ConfigFile)
+	env := processEnv()
+
+	var config_file string
+	
+	if cli.ConfigFile != "" {
+		config_file = cli.ConfigFile
+	} else if env.ConfigFile != "" {
+		config_file = env.ConfigFile
+	} else {
+		config_file = defaults.ConfigFile
+	}
+	
+	fconf := loadConfig(config_file)
 
 	// merge the inputs:
 	// Precedence: cli > env > config > default
 
-	
-	
+	var config *HexGameConfig
+	config = MergeConfigs(&cli.HexGameConfig, &env.HexGameConfig)
+	config = MergeConfigs(config, fconf)
+	config = MergeConfigs(config, &defaults.HexGameConfig)
 	
 	return config
 }
@@ -96,14 +118,22 @@ func processEnv() *HexGameOptions {
 
 	env.ConfigFile = os.Getenv("HEXGAME_CONFIG_FILE")
 	env.ContentRoot = os.Getenv("HEXGAME_CONTENT_ROOT")
-
-	env.DbServer = os.Getenv("HEXGAME_DBSERVER")
-	port_string := os.Getenv("HEXGAME_DBPORT")
+	port_string := os.Getenv("HEXGAME_PORT")
 	if len(port_string) > 0 {
 		var err error
-		env.DbPort, err = strconv.Atoi(port_string)
+		env.Port, err = strconv.Atoi(port_string)
 		if err != nil {
-			fmt.Printf("error parsing DB port string '%s': %s\n", port_string, err)
+			fmt.Printf("error parsing server port string '%s': %s\n", port_string, err)
+		}
+	}
+
+	env.DbServer = os.Getenv("HEXGAME_DBSERVER")
+	dbport_string := os.Getenv("HEXGAME_DBPORT")
+	if len(dbport_string) > 0 {
+		var err error
+		env.DbPort, err = strconv.Atoi(dbport_string)
+		if err != nil {
+			fmt.Printf("error parsing DB port string '%s': %s\n", dbport_string, err)
 		}
 	}
 	env.DbName = os.Getenv("HEXGAME_DBNAME")
@@ -127,25 +157,28 @@ func processFlags() *HexGameOptions {
 
 	var opts HexGameOptions
 
-	flag.StringVar(&opts.ConfigFile, "config-file", "hexgame-config.json",
+	flag.StringVar(&opts.ConfigFile, "config-file", "",
 		"The location of the hexgame server configuration file")
-	
-	flag.StringVar(&opts.DbServer, "dbserver", "localhost",
-		"The hostname or IP address of a mongodb server holding the game database")
 
-	flag.IntVar(&opts.DbPort, "dbport", 27017,
+	flag.IntVar(&opts.Port, "port", 0,
 		"The TCP port of the hexgame database")
 
-	flag.StringVar(&opts.DbName, "dbname", "hexgame",
+	flag.StringVar(&opts.DbServer, "dbserver", "",
+		"The hostname or IP address of a mongodb server holding the game database")
+
+	flag.IntVar(&opts.DbPort, "dbport", 0,
+		"The TCP port of the hexgame database")
+
+	flag.StringVar(&opts.DbName, "dbname", "",
 		"The name of the hexgame database")
 
-	flag.StringVar(&opts.DbUser, "dbuser", "hexgame",
+	flag.StringVar(&opts.DbUser, "dbuser", "",
 		"The access user for the hexgame database")
 
-	flag.StringVar(&opts.DbPassword, "dbpass", "hexgame",
+	flag.StringVar(&opts.DbPassword, "dbpass", "",
 		"The access password for the hexgame database")
 
-	flag.StringVar(&opts.ContentRoot, "content-root", "./static",
+	flag.StringVar(&opts.ContentRoot, "content-root", "",
 		"The location of the static content for the game server")
 
 	flag.BoolVar(&opts.Debug, "debug", false,

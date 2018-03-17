@@ -15,6 +15,7 @@
 package main
 
 import (
+	"strconv"
 	server "github.com/markllama/hexgame/server"
 )
 
@@ -24,6 +25,12 @@ import (
 func main() {
 
 	config := server.GetConfig()
-	
-	server.Main(config)
+
+	// connect to database
+	// session := Connect(&opts.MongoDBConfig)
+	server.Connect(&config.MongoDBConfig)
+
+	//server.Main(config)
+	s := server.NewServer()
+	s.Run(":" + strconv.Itoa(config.Port))
 }

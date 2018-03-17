@@ -1,5 +1,6 @@
 {
   "content-root": "/home/mark/dev/hexgame/static",
+  "port": 3000,
   "db-config": {
     "server": "localhost",
     "port": 27017,
