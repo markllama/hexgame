@@ -28,9 +28,9 @@ func main() {
 
 	// connect to database
 	// session := Connect(&opts.MongoDBConfig)
-	server.Connect(&config.MongoDBConfig)
+	session := server.Connect(&config.MongoDBConfig)
 
 	//server.Main(config)
-	s := server.NewServer()
+	s := server.NewServer(session) 
 	s.Run(":" + strconv.Itoa(config.Port))
 }

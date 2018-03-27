@@ -36,7 +36,7 @@ func Connect(opts *MongoDBConfig) (*mgo.Session) {
 	return session
 }
 
-func NewServer() *negroni.Negroni {
+func NewServer(session *mgo.Session) *negroni.Negroni {
 	formatter := render.New(render.Options{
 		IndentJSON: true,
 	})
@@ -44,14 +44,16 @@ func NewServer() *negroni.Negroni {
 	n := negroni.Classic()
 	mx := mux.NewRouter()
 
-	initRoutes(mx, formatter)
+	initRoutes(mx, formatter, session)
 
 	n.UseHandler(mx)
 	return n
 }
 
-func initRoutes(mx *mux.Router, formatter *render.Render) {
+func initRoutes(mx *mux.Router, formatter *render.Render, session *mgo.Session) {
 	mx.HandleFunc("/test", testHandler(formatter)).Methods("GET")
+	mx.HandleFunc("/game",  GameListHandleFunc(session)).Methods("GET")
+	//mx.HandleFunc("/game/{id}",  GameHandleFunc(session)).Methods("GET")
 }
 
 func testHandler(formatter *render.Render) http.HandlerFunc {
