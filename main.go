@@ -1,4 +1,4 @@
-// Copyright 2018 Mark Lamourine <markllama@gmail.com>
+/// Copyright 2018 Mark Lamourine <markllama@gmail.com>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,16 +15,22 @@
 package main
 
 import (
-	"flag"
-	"os"
-	"github.com/markllama/hexgame/server"
+	"strconv"
+	server "github.com/markllama/hexgame/server"
 )
+
+// the configuration is integrated from defaults, environment, config file
+// and CLI arguments in that order of precedence.
 
 func main() {
 
-	cwd, _ := os.Getwd()
-	content_root := flag.String("content-root", cwd + "/static",
-		"the location of the static content")
+	config := server.GetConfig()
 
-	server.Main(content_root)
+	// connect to database
+	// session := Connect(&opts.MongoDBConfig)
+	session := server.Connect(&config.MongoDBConfig)
+
+	//server.Main(config)
+	s := server.NewServer(session) 
+	s.Run(":" + strconv.Itoa(config.Port))
 }
