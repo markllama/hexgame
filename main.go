@@ -15,22 +15,12 @@
 package main
 
 import (
-	"strconv"
-	server "github.com/markllama/hexgame/server"
+	"fmt"
 )
 
 // the configuration is integrated from defaults, environment, config file
 // and CLI arguments in that order of precedence.
 
 func main() {
-
-	config := server.GetConfig()
-
-	// connect to database
-	// session := Connect(&opts.MongoDBConfig)
-	session := server.Connect(&config.MongoDBConfig)
-
-	//server.Main(config)
-	s := server.NewServer(session) 
-	s.Run(":" + strconv.Itoa(config.Port))
+	fmt.Println("hello world")
 }
