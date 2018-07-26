@@ -16,11 +16,22 @@ package main
 
 import (
 	"fmt"
+	config "github.com/markllama/hexgame/config"
 )
 
 // the configuration is integrated from defaults, environment, config file
 // and CLI arguments in that order of precedence.
 
 func main() {
-	fmt.Println("hello world")
+
+	var opts = config.GetConfig()
+	// read configuration
+
+	// connect to database
+
+	// create api server
+
+	// create user interface server
+	
+	fmt.Printf("hello world %s", opts)
 }
