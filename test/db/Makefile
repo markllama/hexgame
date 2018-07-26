@@ -9,7 +9,7 @@ MONGO_LOAD=mongo --quiet --username=${HEXGAME_USERNAME} --password=${HEXGAME_PAS
 usage:
 	@echo "make mongo-service"
 	@echo "make mongo-admin-password"
-	@echo "make create-hexgame-db"
+	@echo "make mongo-create-hexgame-db"
 	@echo
 	@echo "make db-ip-address"
 	@echo
