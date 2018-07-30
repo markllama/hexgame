@@ -38,10 +38,10 @@ func main() {
 	fmt.Println(session)
 	// create api server
 
-	myHandler1 := http.FileServer(http.Dir("./static"))
-	s := &http.Server{
+	apiHandler := http.FileServer(http.Dir("./static"))
+	apiServer := &http.Server{
 		Addr:           ":8080",
-		Handler:        myHandler1,
+		Handler:        apiHandler,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
@@ -49,19 +49,19 @@ func main() {
 
 	dbDecorator := db.CopyMongoSession(session)
 	
-	myHandler2 := dbDecorator(http.FileServer(http.Dir("./static")))
-	a := &http.Server{
-		Addr:           ":8000",
-		Handler:        myHandler2,
+	appHandler := dbDecorator(http.FileServer(http.Dir("./static")))
+	appServer := &http.Server{
+		Addr:           ":8999",
+		Handler:        appHandler,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	go s.ListenAndServe()
+	go apiServer.ListenAndServe()
 
 	// create user interface server
-	a.ListenAndServe()
+	appServer.ListenAndServe()
 
 	fmt.Printf("hello world %s", opts)
 }
