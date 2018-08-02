@@ -1,4 +1,4 @@
-/// Copyright 2018 Mark Lamourine <markllama@gmail.com>
+// Copyright 2018 Mark Lamourine <markllama@gmail.com>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import (
 	//"log"
 	"time"
 	config "github.com/markllama/hexgame/config"
+	api "github.com/markllama/hexgame/api"
 	db "github.com/markllama/hexgame/db"
 )
 
@@ -33,35 +34,27 @@ func main() {
 	// read configuration
 
 	// connect to database
-	session := db.Connect(&opts.MongoDBConfig)
+	dbSession := db.Connect(&opts.MongoDBConfig)
 
-	fmt.Println(session)
+	fmt.Println(dbSession)
 	// create api server
 
-	apiHandler := http.FileServer(http.Dir("./static"))
-	apiServer := &http.Server{
+	clientMux := http.NewServeMux()
+	clientMux.Handle("/", http.FileServer(http.Dir("./static")))
+	clientServer := &http.Server{
 		Addr:           ":8080",
-		Handler:        apiHandler,
+		Handler:        clientMux,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	dbDecorator := db.CopyMongoSession(session)
+	apiServer := api.NewApiServer(dbSession)
 	
-	appHandler := dbDecorator(http.FileServer(http.Dir("./static")))
-	appServer := &http.Server{
-		Addr:           ":8999",
-		Handler:        appHandler,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 1 << 20,
-	}
-
-	go apiServer.ListenAndServe()
+	go clientServer.ListenAndServe()
 
 	// create user interface server
-	appServer.ListenAndServe()
+	apiServer.ListenAndServe()
 
 	fmt.Printf("hello world %s", opts)
 }
