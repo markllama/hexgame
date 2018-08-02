@@ -43,7 +43,7 @@ func CopyMongoSession(db *mgo.Session) HttpHandlerDecorator {
 			dbsession := db.Copy()
 			defer dbsession.Close() // clean up
 
-			ctx := context.WithValue(r.Context(), "database", dbsession)
+			ctx := context.WithValue(r.Context(), "mongoSession", dbsession)
 			// save it in the mux context
 			new_r := r.WithContext(ctx)
 

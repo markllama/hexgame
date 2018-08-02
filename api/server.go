@@ -14,7 +14,10 @@ func NewApiServer(dbSession *mgo.Session) (*http.Server) {
 	dbDecorator := db.CopyMongoSession(dbSession)
 
 	apiMux := http.NewServeMux()
-	apiHandler := dbDecorator(http.FileServer(http.Dir("./static")))
+
+	var gh GameHandler
+	
+	apiHandler := dbDecorator(gh)
 	//apiHandler := http.FileServer(http.Dir("./static"))
 	apiMux.Handle("/", apiHandler)
 
