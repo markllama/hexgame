@@ -15,7 +15,7 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	"net/http"
 	//"log"
 	"time"
@@ -36,7 +36,7 @@ func main() {
 	// connect to database
 	dbSession := db.Connect(&opts.MongoDBConfig)
 
-	fmt.Println(dbSession)
+	//fmt.Println(dbSession)
 	// create api server
 
 	clientMux := http.NewServeMux()
@@ -56,5 +56,5 @@ func main() {
 	// create user interface server
 	apiServer.ListenAndServe()
 
-	fmt.Printf("hello world %s", opts)
+	//fmt.Printf("hello world %s", opts)
 }

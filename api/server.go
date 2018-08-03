@@ -4,7 +4,7 @@ import (
 	"time"
 	"net/http"
 	
-	"github.com/gorilla/mux"
+	//"github.com/gorilla/mux"
 	"gopkg.in/mgo.v2"
 
 	db "github.com/markllama/hexgame/db"
@@ -14,12 +14,13 @@ func NewApiServer(dbSession *mgo.Session) (*http.Server) {
 
 	dbDecorator := db.CopyMongoSession(dbSession)
 
-	apiMux := mux.NewRouter()
+	//apiMux := mux.NewRouter()
+	apiMux := http.NewServeMux()
 
 	var gh GameHandler
 	
 	apiHandler := dbDecorator(gh)
-	apiMux.Handle("/games/", apiHandler)
+	apiMux.Handle("/games", apiHandler)
 
 	apiServer := &http.Server{
 		Addr:           ":8999",
