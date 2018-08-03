@@ -13,9 +13,9 @@ import (
 )
 
 
-type GameHandler struct {}
+type GamesHandler struct {}
 
-func (h GameHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h GamesHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// this assumes that there is a mgo Session stored in the request context
 
 	// get the hexgame database and games collection

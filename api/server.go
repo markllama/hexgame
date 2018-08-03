@@ -17,10 +17,7 @@ func NewApiServer(dbSession *mgo.Session) (*http.Server) {
 	//apiMux := mux.NewRouter()
 	apiMux := http.NewServeMux()
 
-	var gh GameHandler
-	
-	apiHandler := dbDecorator(gh)
-	apiMux.Handle("/games", apiHandler)
+	apiMux.Handle("/games", dbDecorator(new(GamesHandler)))
 
 	apiServer := &http.Server{
 		Addr:           ":8999",
