@@ -17,8 +17,9 @@ func NewApiServer(dbSession *mgo.Session) (*http.Server) {
 	apiMux := mux.NewRouter()
 	//apiMux := http.NewServeMux()
 
-	apiMux.Handle("/games/", dbDecorator(new(GamesHandler)))
-	apiMux.Handle("/maps/", dbDecorator(new(MapsHandler)))
+	apiMux.Handle("/games", dbDecorator(new(GamesHandler)))
+	//apiMux.Handle("/games/{name}", dbDecorator(new(GameHandler)))
+	apiMux.Handle("/maps", dbDecorator(new(MapsHandler)))
 	apiMux.Handle("/maps/{name}", dbDecorator(new(MapHandler)))
 
 	apiServer := &http.Server{
